@@ -2,22 +2,30 @@
 
 O site só do Felipe: o trabalho dele e um botão pro WhatsApp. Separado do site do studio (cravejado.art.br), que mostra a casa toda.
 
-## O jeito mais fácil de editar
+## Trocar as tattoos: a pasta é a galeria
 
-Fala pro VIVO no chat ("troca a foto do Senna pela do Zeus cicatrizado", "muda a agenda pra dezembro"). Ele edita e sobe.
+A galeria vem da pasta **`5 TATTOOS/GALERIA DO SITE`**, na Torre. O que estiver lá é o que aparece no site, na ordem dos números.
 
-## Se quiser mexer na mão
+O nome do arquivo é o que aparece embaixo da foto:
 
-Quase tudo que muda mora em **um arquivo só: `conteudo.js`**.
+```
+03 A Chave e o Rifle - Calligraffiti.jpg
+^ordem  ^nome              ^estilo
+```
+
+- **Pôr uma:** joga a foto na pasta e renomeia nesse formato.
+- **Tirar uma:** apaga da pasta.
+- **Mudar a ordem:** muda os números.
+
+Depois fala pro VIVO: "atualiza o site". Ele roda o `atualizar-galeria.py` (que mora fora do site, em `4 SISTEMAS/SITE/`), e o site muda em 1 ou 2 minutos.
+
+## O resto
 
 | Quero... | Onde |
 |---|---|
 | mudar o mês ou a cidade da agenda | `conteudo.js` → `agenda` |
 | trocar o número do WhatsApp | `conteudo.js` → `whatsapp` (só números, 55 + DDD) |
 | mudar a mensagem que já vem escrita | `conteudo.js` → `mensagem` |
-| pôr uma tattoo nova na galeria | joga a foto em `fotos/` (nome simples, sem acento nem espaço, em .jpg) e copia uma linha da `galeria` no `conteudo.js` |
-| tirar uma tattoo | apaga a linha dela na `galeria` |
-| mudar a ordem | muda a ordem das linhas |
 
 Os textos fixos (o título, "como funciona", as perguntas) ficam no `index.html`.
 

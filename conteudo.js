@@ -18,22 +18,21 @@ window.SITE = {
   instagram: "ocravejado",
   instagramStudio: "cravejado.studio",
 
-  // A GALERIA. Aparece nesta ordem.
-  // Peça nova: põe a foto em fotos/ com um nome simples (sem acento, sem espaço)
-  // e copia uma linha daqui, trocando foto, nome e estilo.
+  // A GALERIA. Não mexe aqui: ela é escrita sozinha a partir da pasta
+  // 5 TATTOOS/GALERIA DO SITE, na Torre. Muda a pasta e pede pro VIVO atualizar.
   galeria: [
-    { foto: "irrevogavel",     nome: "Irrevogável",        estilo: "Autoral" },
-    { foto: "zeus",            nome: "Zeus",               estilo: "Realismo" },
-    { foto: "chave-e-o-rifle", nome: "A Chave e o Rifle",  estilo: "Calligraffiti" },
-    { foto: "pet-joaquim",     nome: "Joaquim",            estilo: "Realismo · pet" },
-    { foto: "flamingo",        nome: "Flamingo",           estilo: "Autoral" },
-    { foto: "retrato",         nome: "Retrato",            estilo: "Realismo" },
-    { foto: "a-mulher",        nome: "A Mulher",           estilo: "Autoral" },
-    { foto: "o-malandro",      nome: "O Malandro",         estilo: "Realismo" },
-    { foto: "ornamental",      nome: "Ornamental",         estilo: "Fineline" },
-    { foto: "senna",           nome: "Senna",              estilo: "Realismo" },
-    { foto: "o-poeta",         nome: "O Poeta",            estilo: "Realismo · lettering" },
-    { foto: "girassol",        nome: "Girassol",           estilo: "Fineline" }
+    { foto: "irrevogavel",       nome: "Irrevogável", estilo: "Autoral" },
+    { foto: "zeus",              nome: "Zeus", estilo: "Realismo" },
+    { foto: "a-chave-e-o-rifle", nome: "A Chave e o Rifle", estilo: "Calligraffiti" },
+    { foto: "joaquim",           nome: "Joaquim", estilo: "Realismo · pet" },
+    { foto: "flamingo",          nome: "Flamingo", estilo: "Autoral" },
+    { foto: "retrato",           nome: "Retrato", estilo: "Realismo" },
+    { foto: "a-mulher",          nome: "A Mulher", estilo: "Autoral" },
+    { foto: "o-malandro",        nome: "O Malandro", estilo: "Realismo" },
+    { foto: "ornamental",        nome: "Ornamental", estilo: "Fineline" },
+    { foto: "senna",             nome: "Senna", estilo: "Realismo" },
+    { foto: "o-poeta",           nome: "O Poeta", estilo: "Realismo · lettering" },
+    { foto: "girassol",          nome: "Girassol", estilo: "Fineline" }
   ]
 
 };
