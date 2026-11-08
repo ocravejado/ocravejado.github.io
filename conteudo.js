@@ -23,6 +23,20 @@ window.SITE = {
     { texto: "Guest em São Paulo · 19 a 22/11", mensagem: "Oi, Felipe! Vim pelo seu site. Vi que você vai estar em São Paulo de 19 a 22/11 e quero tatuar." }
   ],
 
+  // A PERGUNTA DO FIM ("O que vamos tatuar?"). A pessoa toca numa opção, aparece a resposta
+  // e o botão manda uma mensagem diferente no WhatsApp: você já sabe o tipo de projeto antes de abrir.
+  opcoes: [
+    { tipo: "Peça nova", titulo: "Tenho uma ideia e quero ver onde ela encaixa", detalhe: "Pronta ou não. O lugar a gente acha junto.",
+      resposta: "A gente começa pelo lugar.", texto: "Me manda a ideia e uma foto de onde você pensou. Eu te mostro onde ela encaixa melhor no seu corpo, antes de qualquer desenho.",
+      botao: "Quero ver onde encaixa", mensagem: "Oi, Felipe! Vim pelo seu site. Tenho uma ideia de tattoo e quero ver onde ela encaixa." },
+    { tipo: "Projeto grande", titulo: "Quero fechar um braço, as costas ou a perna", detalhe: "Uma peça só, ocupando a região inteira.",
+      resposta: "Projeto grande se planeja inteiro.", texto: "Antes da primeira sessão, a gente define o encaixe do todo e quantas sessões vão ser. Cada parte já nasce no lugar certo.",
+      botao: "Quero fechar uma região", mensagem: "Oi, Felipe! Vim pelo seu site e quero fechar uma região inteira (braço, costas ou perna)." },
+    { tipo: "Junto das que já tenho", titulo: "Quero uma que converse com as tattoos que já tenho", detalhe: "A nova entra no espaço que sobrou, combinando com o que já está ali.",
+      resposta: "A nova tem que conversar com as antigas.", texto: "Me manda uma foto de como está hoje. Eu te mostro onde a nova entra e como ela se liga ao que você já tem.",
+      botao: "Quero encaixar com as minhas", mensagem: "Oi, Felipe! Vim pelo seu site. Já tenho tattoos e quero uma nova que converse com elas." }
+  ],
+
   // O Uber pro studio (mesmo destino do cravejado.art.br)
   uber: "https://m.uber.com/ul/?action=setPickup&dropoff[latitude]=-16.6981144&dropoff[longitude]=-49.2238241&dropoff[nickname]=CRVJD%20Studio",
 
@@ -49,7 +63,7 @@ window.SITE = {
     { foto: "o-flamingo",         v: "cbbf8a", nome: "O Flamingo", estilo: "Cravejado" },
     { foto: "a-abelha",           v: "605588", nome: "A Abelha", estilo: "Cravejado" },
     { foto: "a-flor-do-silencio", v: "0886ae", nome: "A Flor do Silêncio", estilo: "Fineline" },
-    { foto: "o-irrevogavel",      v: "ee5dc6", nome: "O Irrevogável", estilo: "Cravejado" }
+    { foto: "o-irrevogavel",      v: "fa2b90", nome: "O Irrevogável", estilo: "Cravejado" }
   ]
 
 };

@@ -18,6 +18,8 @@ O nome do arquivo é o que aparece embaixo da foto:
 - **Tirar uma:** apaga da pasta.
 - **Mudar a ordem:** muda os números.
 
+**A capa** vem da subpasta `GALERIA DO SITE/CAPA` (a primeira foto de lá). O recorte da capa e da imagem do link no WhatsApp fica com o VIVO.
+
 **A foto da seção "O dia"** (você tatuando) vem da subpasta `GALERIA DO SITE/O DIA`: a primeira foto de lá é a que aparece. Pra trocar, troca o arquivo.
 
 Depois fala pro VIVO: "atualiza o site". Ele roda o `atualizar-galeria.py` (que mora fora do site, em `4 SISTEMAS/SITE/`), e o site muda em 1 ou 2 minutos.
@@ -29,6 +31,8 @@ Depois fala pro VIVO: "atualiza o site". Ele roda o `atualizar-galeria.py` (que 
 | mudar o mês ou a cidade da agenda | `conteudo.js` → `agenda` |
 | trocar o número do WhatsApp | `conteudo.js` → `whatsapp` (só números, 55 + DDD) |
 | mudar a mensagem que já vem escrita | `conteudo.js` → `mensagem` |
+| mudar os avisos da capa (vagas, viagem) | `conteudo.js` → `avisos` |
+| mudar as opções da pergunta do fim | `conteudo.js` → `opcoes` |
 
 Os textos fixos (o título, "como funciona", as perguntas) ficam no `index.html`.
 
