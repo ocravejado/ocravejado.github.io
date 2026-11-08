@@ -166,7 +166,12 @@ section{padding:48px 0}
 .fim p{margin-top:20px;font-size:clamp(18px,2vw,21px);color:var(--cinza);max-width:38ch}
 .mimos{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
 .mimos li{font-size:13px;letter-spacing:.04em;padding:8px 13px;border:1px solid var(--linha);border-radius:999px;color:var(--off)}
-.escolha{margin-top:34px;max-width:720px}
+.escolha{max-width:720px}
+.pergunta .cabeca{max-width:720px}
+.pergunta h2 .ponto{color:var(--ciano)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.inspira{display:inline-block;margin-top:22px;font-size:14px;color:var(--cinza);text-decoration:underline;text-underline-offset:3px}
+.inspira:hover{color:var(--off)}
 .escolha fieldset{border:0;padding:0;margin:0;min-width:0}
 .escolha legend{padding:0;margin-bottom:14px}
 .opcoes{display:grid;gap:10px}
@@ -181,11 +186,10 @@ section{padding:48px 0}
 .opcao .det{display:block;margin-top:4px;font-size:14px;color:var(--cinza)}
 .resposta{margin-top:18px;padding:22px;border-radius:14px;background:var(--preto-2);border:1px solid var(--linha)}
 .resposta h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(26px,3.6vw,36px);line-height:1.18}
-.fim .resposta p{margin-top:10px;font-size:16px;color:var(--cinza);max-width:52ch}
+.resposta p{margin-top:10px;font-size:16px;color:var(--cinza);max-width:52ch}
 .resposta .btn{margin-top:18px}
 .resposta small{display:block;margin-top:12px;font-size:13px;color:var(--cinza)}
-.fim .fim-ig{margin-top:28px;font-size:14px}
-.fim-ig a{color:var(--off);text-decoration:underline;text-underline-offset:3px}
+.fim .acoes{margin-top:34px}
 
 /* ---------- rodapé ---------- */
 footer{border-top:1px solid var(--linha);padding:36px 0 120px;font-size:14px;color:var(--cinza)}
@@ -284,6 +288,30 @@ dialog::backdrop{background:rgba(6,6,6,.96)}
     </div>
   </section>
 
+  <!-- A PERGUNTA: o que vamos tatuar? (as opções moram no conteudo.js) -->
+  <section class="pergunta" id="orcamento">
+    <div class="wrap">
+      <div class="cabeca surge">
+        <h2 class="titulo">O que vamos tatuar<span class="ponto">?</span></h2>
+        <span class="olho">Toca numa opção</span>
+      </div>
+      <form class="escolha surge" data-escolha onsubmit="return false">
+        <fieldset>
+          <legend class="sr">Qual projeto você quer fazer?</legend>
+          <div class="opcoes" data-opcoes></div>
+        </fieldset>
+        <div class="resposta" data-resposta hidden aria-live="polite">
+          <h3></h3>
+          <p></p>
+          <a class="btn btn-cheio" href="https://wa.me/5562982864646" target="_blank" rel="noopener"><svg><use href="#i-zap"/></svg><span>Pedir orçamento</span></a>
+          <small>Valor e data na mesma conversa.</small>
+        </div>
+        <noscript><a class="btn btn-cheio" href="https://wa.me/5562982864646" target="_blank" rel="noopener">Pedir orçamento no WhatsApp</a></noscript>
+      </form>
+      <a class="inspira" href="#trabalho">Ainda pensando? Olha o trabalho primeiro ↓</a>
+    </div>
+  </section>
+
   <!-- O TRABALHO -->
   <section id="trabalho">
     <div class="wrap">
@@ -364,26 +392,16 @@ dialog::backdrop{background:rgba(6,6,6,.96)}
   </section>
 
   <!-- FIM -->
-  <section class="fim" id="orcamento">
+  <section class="fim">
     <div class="wrap">
       <div class="surge">
         <h2 class="titulo">Sabe aquela ideia que você carrega há anos<span style="color:var(--ciano)">?</span></h2>
         <p>Conta ela pra mim. Eu te mostro a melhor forma de encaixar ela no seu corpo.</p>
       </div>
-      <form class="escolha surge" data-escolha onsubmit="return false">
-        <fieldset>
-          <legend class="olho">O que vamos tatuar? · toca numa opção</legend>
-          <div class="opcoes" data-opcoes></div>
-        </fieldset>
-        <div class="resposta" data-resposta hidden aria-live="polite">
-          <h3></h3>
-          <p></p>
-          <a class="btn btn-cheio" href="https://wa.me/5562982864646" target="_blank" rel="noopener"><svg><use href="#i-zap"/></svg><span>Pedir orçamento</span></a>
-          <small>Valor e data na mesma conversa.</small>
-        </div>
-        <noscript><a class="btn btn-cheio" href="https://wa.me/5562982864646" target="_blank" rel="noopener">Pedir orçamento no WhatsApp</a></noscript>
-      </form>
-      <p class="fim-ig">Quer ver mais antes? <a data-ig href="https://instagram.com/ocravejado" target="_blank" rel="noopener">@ocravejado</a></p>
+      <div class="acoes surge">
+        <a class="btn btn-cheio" href="#orcamento">Pedir orçamento</a>
+        <a class="btn btn-vazio" data-ig href="https://instagram.com/ocravejado" target="_blank" rel="noopener">@ocravejado</a>
+      </div>
     </div>
   </section>
 

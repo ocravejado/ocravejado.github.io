@@ -23,7 +23,7 @@ window.SITE = {
     { texto: "Guest em São Paulo · 19 a 22/11", mensagem: "Oi, Felipe! Vim pelo seu site. Vi que você vai estar em São Paulo de 19 a 22/11 e quero tatuar." }
   ],
 
-  // A PERGUNTA DO FIM ("O que vamos tatuar?"). A pessoa toca numa opção, aparece a resposta
+  // A PERGUNTA ("O que vamos tatuar?"), logo depois da capa. A pessoa toca numa opção, aparece a resposta
   // e o botão manda uma mensagem diferente no WhatsApp: você já sabe o tipo de projeto antes de abrir.
   opcoes: [
     { tipo: "Peça nova", titulo: "Tenho uma ideia e quero ver onde ela encaixa", detalhe: "Pronta ou não. O lugar a gente acha junto.",
@@ -32,9 +32,9 @@ window.SITE = {
     { tipo: "Projeto grande", titulo: "Quero fechar um braço, as costas ou a perna", detalhe: "Uma peça só, ocupando a região inteira.",
       resposta: "Projeto grande se planeja inteiro.", texto: "Antes da primeira sessão, a gente define o encaixe do todo e quantas sessões vão ser. Cada parte já nasce no lugar certo.",
       botao: "Quero fechar uma região", mensagem: "Oi, Felipe! Vim pelo seu site e quero fechar uma região inteira (braço, costas ou perna)." },
-    { tipo: "Junto das que já tenho", titulo: "Quero uma que converse com as tattoos que já tenho", detalhe: "A nova entra no espaço que sobrou, combinando com o que já está ali.",
-      resposta: "A nova tem que conversar com as antigas.", texto: "Me manda uma foto de como está hoje. Eu te mostro onde a nova entra e como ela se liga ao que você já tem.",
-      botao: "Quero encaixar com as minhas", mensagem: "Oi, Felipe! Vim pelo seu site. Já tenho tattoos e quero uma nova que converse com elas." }
+    { tipo: "Primeira tattoo", titulo: "É minha primeira tattoo", detalhe: "Não precisa saber o quê nem onde. A gente começa pela conversa.",
+      resposta: "A primeira a gente faz com calma.", texto: "Me conta o que te dá vontade de tatuar, mesmo que ainda seja só uma ideia solta. Se preferir, vem conhecer o studio antes, sem compromisso.",
+      botao: "Quero fazer a minha primeira", mensagem: "Oi, Felipe! Vim pelo seu site. É minha primeira tattoo e queria conversar." }
   ],
 
   // O Uber pro studio (mesmo destino do cravejado.art.br)
@@ -46,7 +46,7 @@ window.SITE = {
   // A GALERIA. Não mexe aqui: ela é escrita sozinha a partir da pasta
   // 5 TATTOOS/GALERIA DO SITE, na Torre. Muda a pasta e pede pro VIVO atualizar.
   galeria: [
-    { foto: "o-eixo",             v: "7eb538", nome: "O Eixo", estilo: "Cravejado" },
+    { foto: "o-eixo",             v: "226d89", nome: "O Eixo", estilo: "Cravejado" },
     { foto: "o-zeus",             v: "224772", nome: "O Zeus", estilo: "Realismo" },
     { foto: "a-fera",             v: "3c30bc", nome: "A Fera", estilo: "Cravejado" },
     { foto: "o-zeca",             v: "ffad15", nome: "O Zeca", estilo: "Realismo · pet" },
