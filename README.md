@@ -13,7 +13,8 @@ O nome do arquivo é o que aparece embaixo da foto:
 ^ordem  ^nome              ^estilo
 ```
 
-- **Pôr uma:** joga a foto na pasta e renomeia nesse formato.
+- **Nome de uma palavra só leva artigo:** `O Eixo`, `A Abelha`, nunca `Eixo`.
+- **Pôr uma:** joga a foto na pasta e renomeia nesse formato. O VIVO marca onde a tattoo está na foto (o enquadramento), pra ela sair centralizada na grade.
 - **Tirar uma:** apaga da pasta.
 - **Mudar a ordem:** muda os números.
 
