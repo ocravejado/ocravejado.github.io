@@ -21,18 +21,24 @@ window.SITE = {
   // A GALERIA. Não mexe aqui: ela é escrita sozinha a partir da pasta
   // 5 TATTOOS/GALERIA DO SITE, na Torre. Muda a pasta e pede pro VIVO atualizar.
   galeria: [
-    { foto: "irrevogavel",       nome: "Irrevogável", estilo: "Autoral" },
-    { foto: "zeus",              nome: "Zeus", estilo: "Realismo" },
-    { foto: "a-chave-e-o-rifle", nome: "A Chave e o Rifle", estilo: "Calligraffiti" },
-    { foto: "joaquim",           nome: "Joaquim", estilo: "Realismo · pet" },
-    { foto: "flamingo",          nome: "Flamingo", estilo: "Autoral" },
-    { foto: "retrato",           nome: "Retrato", estilo: "Realismo" },
-    { foto: "a-mulher",          nome: "A Mulher", estilo: "Autoral" },
-    { foto: "o-malandro",        nome: "O Malandro", estilo: "Realismo" },
-    { foto: "ornamental",        nome: "Ornamental", estilo: "Fineline" },
-    { foto: "senna",             nome: "Senna", estilo: "Realismo" },
-    { foto: "o-poeta",           nome: "O Poeta", estilo: "Realismo · lettering" },
-    { foto: "girassol",          nome: "Girassol", estilo: "Fineline" }
+    { foto: "a-chave-e-o-rifle",  nome: "A Chave e o Rifle", estilo: "Cravejado" },
+    { foto: "zeus",               nome: "Zeus", estilo: "Realismo" },
+    { foto: "flamingo",           nome: "Flamingo", estilo: "Cravejado" },
+    { foto: "zeca",               nome: "Zeca", estilo: "Realismo · pet" },
+    { foto: "a-preta",            nome: "A Preta", estilo: "Cravejado" },
+    { foto: "a-onda",             nome: "A Onda", estilo: "Cravejado · colorido" },
+    { foto: "o-malandro",         nome: "O Malandro", estilo: "" },
+    { foto: "abelha",             nome: "Abelha", estilo: "Cravejado" },
+    { foto: "jesus-cristo",       nome: "Jesus Cristo", estilo: "Lettering" },
+    { foto: "senna",              nome: "Senna", estilo: "Realismo" },
+    { foto: "o-cacique",          nome: "O Cacique", estilo: "Autoral" },
+    { foto: "ornamental",         nome: "Ornamental", estilo: "Cravejado" },
+    { foto: "escudo",             nome: "Escudo", estilo: "Cravejado" },
+    { foto: "joaquim",            nome: "Joaquim", estilo: "Realismo · pet" },
+    { foto: "a-flor-do-silencio", nome: "A Flor do Silêncio", estilo: "Fineline" },
+    { foto: "fechamento",         nome: "Fechamento", estilo: "Cravejado" },
+    { foto: "irrevogavel",        nome: "Irrevogável", estilo: "Cravejado" },
+    { foto: "eixo",               nome: "Eixo", estilo: "Cravejado" }
   ]
 
 };

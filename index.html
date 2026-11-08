@@ -126,6 +126,9 @@ section{padding:96px 0}
 .dia p{font-size:clamp(18px,2vw,21px);max-width:34ch;color:var(--off)}
 .dia p + p{margin-top:16px;color:var(--cinza)}
 .traco{width:56px;height:2px;background:var(--ciano);margin-bottom:28px}
+.dia-foto{aspect-ratio:4/5;overflow:hidden;background:var(--preto-2)}
+.dia-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:grayscale(.2) contrast(1.04)}
+.dia-texto{display:grid;gap:32px}
 
 /* ---------- como funciona ---------- */
 .passos{list-style:none;display:grid;gap:0;counter-reset:p}
@@ -198,7 +201,8 @@ dialog::backdrop{background:rgba(6,6,6,.96)}
   .galeria{grid-template-columns:repeat(3,1fr);gap:8px}
   .peca figcaption{left:18px;bottom:16px}
   .peca b{font-size:22px}
-  .dia .grade{grid-template-columns:1.2fr 1fr;align-items:end;gap:64px}
+  .dia .grade{grid-template-columns:5fr 7fr;align-items:end;gap:64px}
+  .dia h2{font-size:clamp(48px,6.4vw,104px)}
   .primeira .grade{grid-template-columns:1.3fr 1fr;gap:64px}
   .passos{grid-template-columns:1fr 1fr;column-gap:56px}
   .barra{display:none}
@@ -263,11 +267,15 @@ dialog::backdrop{background:rgba(6,6,6,.96)}
   <!-- O DIA -->
   <section class="dia">
     <div class="wrap grade">
-      <h2 class="titulo surge">Não vendo hora de agulha<span>.</span><br>Vendo o dia<span>.</span></h2>
-      <div class="surge">
-        <div class="traco"></div>
-        <p>A tatuagem é pra sempre. A lembrança do dia em que ela foi feita também.</p>
-        <p>Por isso é uma pessoa por vez: ambiente reservado, atendimento individual, sem pressa, sem fila, sem plateia.</p>
+      <!-- a foto vem da pasta 5 TATTOOS/GALERIA DO SITE/O DIA -->
+      <figure class="dia-foto surge"><img src="fotos/o-dia.jpg" alt="Felipe Ormond no CRVJD Studio, preparando a sessão" loading="lazy" decoding="async" onerror="this.parentNode.remove()"></figure>
+      <div class="dia-texto">
+        <h2 class="titulo surge">Não vendo hora de agulha<span>.</span><br>Vendo o dia<span>.</span></h2>
+        <div class="surge">
+          <div class="traco"></div>
+          <p>A tatuagem é pra sempre. A lembrança do dia em que ela foi feita também.</p>
+          <p>Por isso é uma pessoa por vez: ambiente reservado, atendimento individual, sem pressa, sem fila, sem plateia.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -388,7 +396,7 @@ dialog::backdrop{background:rgba(6,6,6,.96)}
     var fig = document.createElement("figure");
     var img = document.createElement("img");
     img.loading = "lazy"; img.decoding = "async";
-    img.alt = p.nome + ", " + p.estilo + ", tatuagem de Felipe Ormond";
+    img.alt = p.nome + (p.estilo ? ", " + p.estilo : "") + ", tatuagem de Felipe Ormond";
     img.src = "fotos/p/" + p.foto + ".jpg";
     img.onerror = function(){ this.onerror = null; this.src = "fotos/" + p.foto + ".jpg"; };
     var cap = document.createElement("figcaption");
