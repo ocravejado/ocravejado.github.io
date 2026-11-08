@@ -29,7 +29,7 @@
   "@context": "https://schema.org",
   "@type": "TattooParlor",
   "name": "Cravejado · Felipe Ormond",
-  "description": "Realismo, fineline e calligraffiti. Atendimento individual, uma pessoa por vez.",
+  "description": "Realismo, fineline e calligraffiti. Atendimento individual, uma pessoa por dia.",
   "telephone": "+55 62 98286-4646",
   "address": { "@type": "PostalAddress", "addressLocality": "Goiânia", "addressRegion": "GO", "addressCountry": "BR" },
   "areaServed": "Goiânia",
@@ -106,8 +106,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;op
 @keyframes pulsa{70%{box-shadow:0 0 0 10px rgba(79,211,234,0)}100%{box-shadow:0 0 0 0 rgba(79,211,234,0)}}
 
 /* ---------- seções ---------- */
-section{padding:96px 0}
-.cabeca{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 20px;margin-bottom:36px;border-bottom:1px solid var(--linha);padding-bottom:18px}
+section{padding:48px 0}
+.cabeca{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 20px;margin-bottom:22px;border-bottom:1px solid var(--linha);padding-bottom:16px}
 .cabeca h2{font-size:clamp(44px,8vw,96px)}
 .cabeca .olho{white-space:nowrap}
 
@@ -138,6 +138,7 @@ section{padding:96px 0}
 /* ---------- como funciona ---------- */
 .passos{list-style:none;display:grid;gap:0;counter-reset:p}
 .passos li{display:grid;grid-template-columns:64px 1fr;gap:8px 16px;padding:26px 0;border-bottom:1px solid var(--linha)}
+.passos li:first-child{padding-top:8px}
 .passos li::before{counter-increment:p;content:counter(p,decimal-leading-zero);font-family:var(--display);font-size:28px;color:var(--ciano);line-height:1}
 .passos h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(26px,3.6vw,38px);line-height:1.18;letter-spacing:.01em}
 .passos p{grid-column:2;color:var(--cinza);max-width:46ch}
@@ -160,7 +161,7 @@ section{padding:96px 0}
 .perguntas details p{padding:0 0 26px;color:var(--cinza);max-width:56ch}
 
 /* ---------- fim ---------- */
-.fim{text-align:left;padding:120px 0 110px}
+.fim{text-align:left;padding:60px 0 72px}
 .fim h2{font-size:clamp(46px,9.5vw,132px);max-width:14ch}
 .fim p{margin-top:20px;font-size:clamp(18px,2vw,21px);color:var(--cinza);max-width:38ch}
 .fim .acoes{margin-top:34px}
@@ -214,7 +215,7 @@ dialog::backdrop{background:rgba(6,6,6,.96)}
   .barra{display:none}
   footer{padding-bottom:40px}
   .vista .seta{display:block}
-  section{padding:130px 0}
+  section{padding:72px 0}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -278,7 +279,7 @@ dialog::backdrop{background:rgba(6,6,6,.96)}
       <!-- a foto vem da pasta 5 TATTOOS/GALERIA DO SITE/O DIA -->
       <figure class="dia-foto surge"><img src="fotos/o-dia.jpg" alt="Felipe Ormond no CRVJD Studio, preparando a sessão" loading="lazy" decoding="async" onerror="this.parentNode.remove()"></figure>
       <div class="dia-texto">
-        <h2 class="titulo surge">Uma pessoa<br>por vez<span>.</span></h2>
+        <h2 class="titulo surge">Uma pessoa<br>por dia<span>.</span></h2>
         <div class="surge">
           <div class="traco"></div>
           <p>A tatuagem é pra sempre. A lembrança do dia em que ela foi feita também.</p>
@@ -334,7 +335,7 @@ dialog::backdrop{background:rgba(6,6,6,.96)}
       </details>
       <details class="surge">
         <summary>Onde fica?</summary>
-        <p>No CRVJD Studio, em Goiânia. Ambiente reservado, uma pessoa por vez. O botão do Uber, ali em cima, já te leva direto.</p>
+        <p>No CRVJD Studio, em Goiânia. Ambiente reservado, uma pessoa por dia. O botão do Uber, ali em cima, já te leva direto.</p>
       </details>
     </div>
   </section>
