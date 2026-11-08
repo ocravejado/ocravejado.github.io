@@ -17,6 +17,8 @@ O nome do arquivo é o que aparece embaixo da foto:
 - **Tirar uma:** apaga da pasta.
 - **Mudar a ordem:** muda os números.
 
+**A foto da seção "O dia"** (você tatuando) vem da subpasta `GALERIA DO SITE/O DIA`: a primeira foto de lá é a que aparece. Pra trocar, troca o arquivo.
+
 Depois fala pro VIVO: "atualiza o site". Ele roda o `atualizar-galeria.py` (que mora fora do site, em `4 SISTEMAS/SITE/`), e o site muda em 1 ou 2 minutos.
 
 ## O resto
