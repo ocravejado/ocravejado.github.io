@@ -64,7 +64,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;op
 
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
 .olho{font:600 12px/1 var(--texto);letter-spacing:.22em;text-transform:uppercase;color:var(--cinza)}
-.titulo{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:1.06;letter-spacing:.005em}
+.titulo{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:1.18;letter-spacing:.005em}
 
 /* ---------- topo ---------- */
 .topo{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
@@ -134,7 +134,7 @@ section{padding:96px 0}
 .passos{list-style:none;display:grid;gap:0;counter-reset:p}
 .passos li{display:grid;grid-template-columns:64px 1fr;gap:8px 16px;padding:26px 0;border-bottom:1px solid var(--linha)}
 .passos li::before{counter-increment:p;content:counter(p,decimal-leading-zero);font-family:var(--display);font-size:28px;color:var(--ciano);line-height:1}
-.passos h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(26px,3.6vw,38px);line-height:1;letter-spacing:.01em}
+.passos h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(26px,3.6vw,38px);line-height:1.18;letter-spacing:.01em}
 .passos p{grid-column:2;color:var(--cinza);max-width:46ch}
 
 /* ---------- primeira tattoo ---------- */
@@ -147,7 +147,7 @@ section{padding:96px 0}
 
 /* ---------- perguntas ---------- */
 .perguntas details{border-bottom:1px solid var(--linha)}
-.perguntas summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;cursor:pointer;font-family:var(--display);text-transform:uppercase;font-size:clamp(24px,3.2vw,34px);line-height:1.05}
+.perguntas summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;cursor:pointer;font-family:var(--display);text-transform:uppercase;font-size:clamp(24px,3.2vw,34px);line-height:1.18}
 .perguntas summary::-webkit-details-marker{display:none}
 .perguntas summary::after{content:"+";font-family:var(--texto);font-weight:400;font-size:28px;color:var(--ciano);transition:transform .25s}
 .perguntas details[open] summary::after{transform:rotate(45deg)}
@@ -177,7 +177,7 @@ dialog::backdrop{background:rgba(6,6,6,.96)}
 .vista figure{min-height:0;display:flex;align-items:center;justify-content:center;padding:64px 12px 8px}
 .vista img{max-height:100%;max-width:100%;object-fit:contain;touch-action:pan-y}
 .vista .info{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px calc(18px + env(safe-area-inset-bottom));max-width:var(--max);width:100%;margin:0 auto}
-.vista .info b{display:block;font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:26px;line-height:1}
+.vista .info b{display:block;font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:26px;line-height:1.18}
 .vista .info small{color:var(--cinza);font-size:13px}
 .vista .fechar{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:50%;border:1px solid var(--linha);font-size:22px;line-height:1;z-index:2}
 .vista .seta{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid var(--linha);font-size:20px;background:rgba(11,11,11,.5);z-index:2;display:none}
@@ -237,14 +237,14 @@ dialog::backdrop{background:rgba(6,6,6,.96)}
     <div class="capa-foto">
       <picture>
         <source media="(min-width: 760px) and (min-aspect-ratio: 1/1)" srcset="fotos/capa-larga.jpg">
-        <img src="fotos/capa-alta.jpg" alt="Fênix nas costas, a peça Irrevogável, tatuada por Felipe Ormond" fetchpriority="high">
+        <img src="fotos/capa-alta.jpg" alt="Fênix nas costas, a peça O Irrevogável, tatuada por Felipe Ormond" fetchpriority="high">
       </picture>
     </div>
     <div class="wrap capa-texto">
       <p class="olho">Felipe Ormond · Cravejado</p>
       <h1 class="titulo">Tatuagem<br>não é<br>adesivo<span class="ponto">.</span></h1>
       <p class="sub">Ela tem que encaixar no seu corpo.</p>
-      <p class="estilos">Realismo · Fineline · Calligraffiti</p>
+      <p class="estilos">Realismo · Fineline · Cravejado</p>
       <div class="acoes">
         <a class="btn btn-cheio" data-wa href="https://wa.me/5562982864646" target="_blank" rel="noopener"><svg><use href="#i-zap"/></svg>Pedir orçamento</a>
         <a class="btn btn-vazio" href="#trabalho">Ver o trabalho</a>
@@ -258,7 +258,7 @@ dialog::backdrop{background:rgba(6,6,6,.96)}
     <div class="wrap">
       <div class="cabeca surge">
         <h2 class="titulo">O trabalho</h2>
-        <span class="olho" data-contagem>12 peças</span>
+        <span class="olho" data-contagem>18 peças</span>
       </div>
       <div class="galeria" id="galeria"></div>
     </div>
@@ -397,8 +397,9 @@ dialog::backdrop{background:rgba(6,6,6,.96)}
     var img = document.createElement("img");
     img.loading = "lazy"; img.decoding = "async";
     img.alt = p.nome + (p.estilo ? ", " + p.estilo : "") + ", tatuagem de Felipe Ormond";
-    img.src = "fotos/p/" + p.foto + ".jpg";
-    img.onerror = function(){ this.onerror = null; this.src = "fotos/" + p.foto + ".jpg"; };
+    var v = p.v ? "?v=" + p.v : "";  // muda a cada foto nova: o celular não fica com a antiga guardada
+    img.src = "fotos/p/" + p.foto + ".jpg" + v;
+    img.onerror = function(){ this.onerror = null; this.src = "fotos/" + p.foto + ".jpg" + v; };
     var cap = document.createElement("figcaption");
     cap.innerHTML = "<b></b><small></small>";
     cap.querySelector("b").textContent = p.nome;
@@ -415,8 +416,8 @@ dialog::backdrop{background:rgba(6,6,6,.96)}
   function mostrar(i){
     atual = (i + lista.length) % lista.length;
     var p = lista[atual];
-    vImg.src = "fotos/" + p.foto + ".jpg";
-    vImg.alt = p.nome + ", " + p.estilo + ", tatuagem de Felipe Ormond";
+    vImg.src = "fotos/" + p.foto + ".jpg" + (p.v ? "?v=" + p.v : "");
+    vImg.alt = p.nome + (p.estilo ? ", " + p.estilo : "") + ", tatuagem de Felipe Ormond";
     vNome.textContent = p.nome; vEst.textContent = p.estilo;
     vWa.href = wa("Oi, Felipe! Vim pelo seu site. Vi a peça \"" + p.nome + "\" e quero algo nessa linha.");
   }
