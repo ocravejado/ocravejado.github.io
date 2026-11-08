@@ -34,7 +34,7 @@ window.SITE = {
   galeria: [
     { foto: "o-eixo",             v: "7eb538", nome: "O Eixo", estilo: "Cravejado" },
     { foto: "o-zeus",             v: "224772", nome: "O Zeus", estilo: "Realismo" },
-    { foto: "o-instinto",         v: "3c30bc", nome: "O Instinto", estilo: "Cravejado" },
+    { foto: "a-fera",             v: "3c30bc", nome: "A Fera", estilo: "Cravejado" },
     { foto: "o-zeca",             v: "ffad15", nome: "O Zeca", estilo: "Realismo · pet" },
     { foto: "a-chave-e-o-rifle",  v: "73d82a", nome: "A Chave e o Rifle", estilo: "Cravejado" },
     { foto: "a-onda",             v: "81a8bf", nome: "A Onda", estilo: "Cravejado · colorido" },
