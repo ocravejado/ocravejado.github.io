@@ -191,6 +191,7 @@ section{padding:48px 0}
 .resposta p{margin-top:10px;font-size:16px;color:var(--cinza);max-width:52ch}
 .resposta .btn{margin-top:18px}
 .onde{margin-top:20px;padding-top:18px;border-top:1px solid var(--linha)}
+.resposta.sem-texto .onde{margin-top:0;padding-top:0;border-top:0}
 .onde .olho{margin-bottom:12px}
 .onde-grade{display:grid;grid-template-columns:1fr;gap:14px;align-items:start}
 .boneco{width:100%;max-width:180px;margin:0 auto}
@@ -526,8 +527,10 @@ html.travado{overflow:hidden}
       r.addEventListener("change", function(){
         caixa.querySelectorAll(".opcao").forEach(function(x){ x.classList.toggle("marcada", x === l); });
         opcao = o;
-        resp.querySelector("[data-r-titulo]").textContent = o.resposta;
-        resp.querySelector("[data-r-texto]").textContent = o.texto;
+        var tt = resp.querySelector("[data-r-titulo]"), tx = resp.querySelector("[data-r-texto]");
+        tt.textContent = o.resposta || ""; tt.hidden = !o.resposta;
+        tx.textContent = o.texto || ""; tx.hidden = !o.texto;
+        resp.classList.toggle("sem-texto", !o.resposta && !o.texto);
         botao.querySelector("span").textContent = o.botao;
         // o boneco só aparece pra quem nunca tatuou: é a referência de quem não manja nada
         var ondeEl = document.querySelector("[data-onde]");
