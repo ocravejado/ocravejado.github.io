@@ -51,12 +51,12 @@ window.SITE = {
                           { nome: "Por fora · ombro e tríceps", dica: "Quem manda é o ombro e o tríceps. A peça tem que seguir o desenho deles.", pecas: ["a-fera", "o-zeus", "o-lirio"] },
                           { nome: "Por dentro · bíceps", dica: "Uma tela parada. O que muda é a curva, que depende do tamanho do seu bíceps.", pecas: ["a-chave-e-o-rifle"] } ] },
     "antebraco":        { nome: "Antebraço", em: "no antebraço", lados: [
-                          { nome: "Por fora", dica: "O músculo que vai do cotovelo ao polegar dita o fluxo do desenho. É o encaixe mais exigente, por isso eu começo por ele.", pecas: ["a-fera", "o-fluxo", "o-flash", "o-malandro", "yeshua", "a-abelha"] },
+                          { nome: "Por fora", dica: "O músculo que vai do cotovelo ao polegar dita o fluxo do desenho. É o encaixe mais exigente, por isso eu começo por ele.", pecas: ["a-fera", "o-fluxo", "o-flash", "o-malandro", "yeshua", "inercia"] },
                           { nome: "Por dentro", dica: "Uma tela parada: cabe quase tudo. Por isso eu prefiro começar pela parte de fora.", pecas: ["a-onda", "o-senna", "o-cacique"] } ] },
     "mao":              { nome: "Mão", em: "na mão", dica: "Os ossos e os dedos mandam. Traço forte, pra ser lido de longe.", pecas: ["jesus-cristo"] },
     "coxa":             { nome: "Coxa", em: "na coxa", dica: "O músculo da frente da coxa é grande e firme: segura peça grande, de cima a baixo.", pecas: ["mapa-coxa"] },
     "lateral":          { nome: "Lateral da perna", em: "na lateral da perna", dica: "A peça segue a linha que desce do joelho ao tornozelo, de lado.", pecas: ["the-last-day-of-pompeii", "a-preta"] },
-    "panturrilha":      { nome: "Panturrilha", em: "na panturrilha", dica: "A panturrilha é redonda. A peça acompanha o volume do músculo pra não ficar chapada.", pecas: ["mapa-o-zeca", "o-joaquim", "o-flamingo", "o-espelho", "o-beija-flor", "mapa-a-faith"] }
+    "panturrilha":      { nome: "Panturrilha", em: "na panturrilha", dica: "A panturrilha é redonda. A peça acompanha o volume do músculo pra não ficar chapada.", pecas: ["mapa-o-zeca", "o-joaquim", "o-flamingo", "o-reflexo", "o-beija-flor", "mapa-a-faith"] }
   },
 
   // O Uber pro studio (mesmo destino do cravejado.art.br)
@@ -87,7 +87,7 @@ window.SITE = {
     { foto: "o-malandro",              v: "af5ecf", nome: "O Malandro", estilo: "" },
     { foto: "o-lirio",                 v: "a45a3d", nome: "O Lírio", estilo: "Fineline" },
     { foto: "jesus-cristo",            v: "b624d4", nome: "Jesus Cristo", estilo: "Lettering" },
-    { foto: "o-espelho",               v: "646234", nome: "O Espelho", estilo: "Realismo" },
+    { foto: "o-reflexo",               v: "86c69d", nome: "O Reflexo", estilo: "Realismo" },
     { foto: "o-flash",                 v: "b90981", nome: "O Flash", estilo: "Cravejado · ornamental" },
     { foto: "o-senna",                 v: "3fbc07", nome: "O Senna", estilo: "Realismo" },
     { foto: "o-cacique",               v: "ae344f", nome: "O Cacique", estilo: "Autoral" },
@@ -98,7 +98,7 @@ window.SITE = {
     { foto: "a-preta",                 v: "b4ed9e", nome: "A Preta", estilo: "Cravejado" },
     { foto: "o-beija-flor",            v: "cac3a7", nome: "O Beija-flor", estilo: "Realismo" },
     { foto: "o-flamingo",              v: "cbbf8a", nome: "O Flamingo", estilo: "Cravejado" },
-    { foto: "a-abelha",                v: "605588", nome: "A Abelha", estilo: "Cravejado" },
+    { foto: "inercia",                 v: "605588", nome: "Inércia", estilo: "Cravejado" },
     { foto: "a-flor-do-silencio",      v: "0886ae", nome: "A Flor do Silêncio", estilo: "Fineline" },
     { foto: "o-irrevogavel",           v: "fa2b90", nome: "O Irrevogável", estilo: "Cravejado" }
   ]
