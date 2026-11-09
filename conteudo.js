@@ -38,17 +38,21 @@ window.SITE = {
   ],
 
   // O "E ONDE?": o bonequinho que aparece depois da escolha. A pessoa toca numa parte do corpo,
-  // ela pinta, aparece a dica de encaixe e as suas peças daquela parte (o nome da foto na galeria).
+  // ela pinta, aparece a frase de encaixe (o músculo que manda ali) e as suas peças daquela parte.
+  // em = como a parte entra na frase ("Pensei no antebraço por fora") · pecas = nome da foto (galeria ou "mapa-")
   regioes: {
-    pescoco:   { nome: "Pescoço",   dica: "No pescoço, a peça segue a curva que desce até o ombro.", pecas: [] },
-    peito:     { nome: "Peito",     dica: "No peito, a peça abre junto com os ombros e respeita o centro do corpo.", pecas: ["o-escudo"] },
-    costela:   { nome: "Costela",   dica: "Na costela, a peça acompanha as linhas do tronco, de cima pra baixo.", pecas: [] },
-    costas:    { nome: "Costas",    dica: "Nas costas, a coluna é o eixo: a peça nasce nela e se abre pros lados.", pecas: ["o-eixo", "o-irrevogavel", "a-flor-do-silencio"] },
-    braco:     { nome: "Braço",     dica: "No braço, a peça abraça o músculo e fica bonita de qualquer ângulo.", pecas: ["a-fera", "o-zeus"] },
-    antebraco: { nome: "Antebraço", dica: "No antebraço, a peça segue o comprimento e acompanha o giro do braço.", pecas: ["a-onda", "o-cacique", "o-malandro", "o-ornamental", "o-senna"] },
-    mao:       { nome: "Mão",       dica: "Na mão, a peça tem que ser lida de longe: traço forte, desenho limpo.", pecas: ["jesus-cristo"] },
-    coxa:      { nome: "Coxa",      dica: "Na coxa cabe peça grande, de frente ou de lado, sem brigar com o joelho.", pecas: [] },
-    perna:     { nome: "Perna",     dica: "Na perna, a peça acompanha o volume da panturrilha, do joelho ao tornozelo.", pecas: ["o-zeca", "o-joaquim", "o-flamingo", "a-preta"] }
+    "pescoco":          { nome: "Pescoço", em: "no pescoço", dica: "O músculo que desce da orelha até o ombro manda no desenho. A peça segue ele.", pecas: [] },
+    "peito":            { nome: "Peito", em: "no peito", dica: "Quem manda é o peitoral: a peça abre junto com ele e respeita o centro do corpo.", pecas: ["o-escudo"] },
+    "costela":          { nome: "Costela e tórax", em: "na costela", dica: "A peça segue as linhas do tórax e pode dar a volta no corpo.", pecas: ["mapa-costela-e-torax"] },
+    "costas":           { nome: "Costas", em: "nas costas", dica: "A coluna é o eixo. A peça nasce nela e se abre junto com as escápulas.", pecas: ["o-eixo", "o-irrevogavel", "a-flor-do-silencio"] },
+    "biceps":           { nome: "Braço por dentro", em: "no braço por dentro", dica: "Por dentro, o braço é uma tela parada. O que muda é a curva, que depende do tamanho do seu bíceps.", pecas: ["a-chave-e-o-rifle"] },
+    "triceps":          { nome: "Ombro e tríceps", em: "no ombro e tríceps", dica: "Por fora, quem manda é o ombro e o tríceps. A peça tem que seguir o desenho deles.", pecas: ["a-fera", "o-zeus", "o-lirio"] },
+    "antebraco-dentro": { nome: "Antebraço por dentro", em: "no antebraço por dentro", dica: "Por dentro, o antebraço é uma tela parada: cabe quase tudo. Por isso eu prefiro começar pela parte de fora.", pecas: ["a-onda", "o-senna"] },
+    "antebraco-fora":   { nome: "Antebraço por fora", em: "no antebraço por fora", dica: "Por fora, o músculo que vai do cotovelo ao polegar dita o fluxo do desenho. É o encaixe mais exigente, por isso eu começo por ele.", pecas: ["o-ornamental", "o-flash", "o-cacique", "o-malandro", "o-yeshua", "a-abelha"] },
+    "mao":              { nome: "Mão", em: "na mão", dica: "Os ossos e os dedos mandam. Traço forte, pra ser lido de longe.", pecas: ["jesus-cristo"] },
+    "coxa":             { nome: "Coxa", em: "na coxa", dica: "O músculo da frente da coxa é grande e firme: segura peça grande, de cima a baixo.", pecas: ["mapa-coxa"] },
+    "lateral":          { nome: "Lateral da perna", em: "na lateral da perna", dica: "A peça segue a linha que desce do joelho ao tornozelo, de lado.", pecas: ["the-last-day-of-pompeii", "a-preta"] },
+    "panturrilha":      { nome: "Panturrilha", em: "na panturrilha", dica: "A panturrilha é redonda. A peça acompanha o volume do músculo pra não ficar chapada.", pecas: ["mapa-o-zeca", "o-joaquim", "o-flamingo", "o-espelho", "o-beija-flor", "mapa-a-faith"] }
   },
 
   // O Uber pro studio (mesmo destino do cravejado.art.br)
@@ -57,27 +61,42 @@ window.SITE = {
   instagram: "ocravejado",
   instagramStudio: "cravejado.studio",
 
+  // AS FOTOS QUE SÓ APARECEM NO BONEQUINHO. Escritas sozinhas a partir da pasta
+  // 5 TATTOOS/GALERIA DO SITE/SÓ NO BONECO. Não entram na galeria.
+  mapa: [
+    { foto: "mapa-a-faith",         v: "6b1b24", nome: "A Faith", estilo: "Lettering · fineline" },
+    { foto: "mapa-costela-e-torax", v: "2ecc0f", nome: "Costela e Tórax", estilo: "Fineline" },
+    { foto: "mapa-coxa",            v: "cd8042", nome: "Coxa", estilo: "" },
+    { foto: "mapa-o-zeca",          v: "261f74", nome: "O Zeca", estilo: "Realismo · pet" }
+  ],
+
   // A GALERIA. Não mexe aqui: ela é escrita sozinha a partir da pasta
   // 5 TATTOOS/GALERIA DO SITE, na Torre. Muda a pasta e pede pro VIVO atualizar.
   galeria: [
-    { foto: "o-eixo",             v: "226d89", nome: "O Eixo", estilo: "Cravejado" },
-    { foto: "o-zeus",             v: "224772", nome: "O Zeus", estilo: "Realismo" },
-    { foto: "a-fera",             v: "3c30bc", nome: "A Fera", estilo: "Cravejado" },
-    { foto: "o-zeca",             v: "ffad15", nome: "O Zeca", estilo: "Realismo · pet" },
-    { foto: "a-chave-e-o-rifle",  v: "73d82a", nome: "A Chave e o Rifle", estilo: "Cravejado" },
-    { foto: "a-onda",             v: "81a8bf", nome: "A Onda", estilo: "Cravejado · colorido" },
-    { foto: "o-malandro",         v: "af5ecf", nome: "O Malandro", estilo: "" },
-    { foto: "jesus-cristo",       v: "b624d4", nome: "Jesus Cristo", estilo: "Lettering" },
-    { foto: "o-senna",            v: "3fbc07", nome: "O Senna", estilo: "Realismo" },
-    { foto: "o-cacique",          v: "ae344f", nome: "O Cacique", estilo: "Autoral" },
-    { foto: "o-ornamental",       v: "f69b47", nome: "O Ornamental", estilo: "Cravejado" },
-    { foto: "o-escudo",           v: "75b62c", nome: "O Escudo", estilo: "Cravejado" },
-    { foto: "o-joaquim",          v: "ec60b0", nome: "O Joaquim", estilo: "Realismo · pet" },
-    { foto: "a-preta",            v: "b4ed9e", nome: "A Preta", estilo: "Cravejado" },
-    { foto: "o-flamingo",         v: "cbbf8a", nome: "O Flamingo", estilo: "Cravejado" },
-    { foto: "a-abelha",           v: "605588", nome: "A Abelha", estilo: "Cravejado" },
-    { foto: "a-flor-do-silencio", v: "0886ae", nome: "A Flor do Silêncio", estilo: "Fineline" },
-    { foto: "o-irrevogavel",      v: "fa2b90", nome: "O Irrevogável", estilo: "Cravejado" }
+    { foto: "o-eixo",                  v: "226d89", nome: "O Eixo", estilo: "Cravejado" },
+    { foto: "o-zeus",                  v: "224772", nome: "O Zeus", estilo: "Realismo" },
+    { foto: "a-fera",                  v: "3c30bc", nome: "A Fera", estilo: "Cravejado" },
+    { foto: "o-zeca",                  v: "ffad15", nome: "O Zeca", estilo: "Realismo · pet" },
+    { foto: "a-chave-e-o-rifle",       v: "73d82a", nome: "A Chave e o Rifle", estilo: "Cravejado" },
+    { foto: "the-last-day-of-pompeii", v: "a6d39a", nome: "The Last Day of Pompeii", estilo: "Releitura realista" },
+    { foto: "a-onda",                  v: "81a8bf", nome: "A Onda", estilo: "Cravejado · colorido" },
+    { foto: "o-malandro",              v: "af5ecf", nome: "O Malandro", estilo: "" },
+    { foto: "o-lirio",                 v: "3c883e", nome: "O Lírio", estilo: "Fineline" },
+    { foto: "jesus-cristo",            v: "b624d4", nome: "Jesus Cristo", estilo: "Lettering" },
+    { foto: "o-espelho",               v: "646234", nome: "O Espelho", estilo: "Realismo" },
+    { foto: "o-flash",                 v: "06f66d", nome: "O Flash", estilo: "Cravejado · ornamental" },
+    { foto: "o-senna",                 v: "3fbc07", nome: "O Senna", estilo: "Realismo" },
+    { foto: "o-cacique",               v: "ae344f", nome: "O Cacique", estilo: "Autoral" },
+    { foto: "o-ornamental",            v: "f69b47", nome: "O Ornamental", estilo: "Cravejado" },
+    { foto: "o-yeshua",                v: "491a5d", nome: "O Yeshua", estilo: "Realismo" },
+    { foto: "o-escudo",                v: "75b62c", nome: "O Escudo", estilo: "Cravejado" },
+    { foto: "o-joaquim",               v: "ec60b0", nome: "O Joaquim", estilo: "Realismo · pet" },
+    { foto: "a-preta",                 v: "b4ed9e", nome: "A Preta", estilo: "Cravejado" },
+    { foto: "o-beija-flor",            v: "25eba1", nome: "O Beija-flor", estilo: "Realismo" },
+    { foto: "o-flamingo",              v: "cbbf8a", nome: "O Flamingo", estilo: "Cravejado" },
+    { foto: "a-abelha",                v: "605588", nome: "A Abelha", estilo: "Cravejado" },
+    { foto: "a-flor-do-silencio",      v: "0886ae", nome: "A Flor do Silêncio", estilo: "Fineline" },
+    { foto: "o-irrevogavel",           v: "fa2b90", nome: "O Irrevogável", estilo: "Cravejado" }
   ]
 
 };

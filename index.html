@@ -506,7 +506,8 @@ html.travado{overflow:hidden}
   function atualizaBotao(){
     if (!opcao) return;
     var R = S.regioes && regiao ? S.regioes[regiao] : null;
-    botao.href = wa(opcao.mensagem + (R ? " Pensei em: " + R.nome.toLowerCase() + "." : ""));
+    botao.querySelector("span").textContent = R ? "Minha ideia encaixa aqui?" : opcao.botao;
+    botao.href = wa(opcao.mensagem + (R ? " Pensei " + R.em + ". Será que encaixa?" : ""));
     botao.setAttribute("data-origem", "pergunta: " + opcao.tipo + (R ? " · " + R.nome : ""));
   }
   if (caixa && S.opcoes && S.opcoes.length){
@@ -536,25 +537,29 @@ html.travado{overflow:hidden}
   var onde = document.querySelector("[data-onde]");
   if (onde && S.regioes){
     var corpo = onde.querySelector("[data-corpo]"), info = onde.querySelector("[data-onde-info]");
-    var BRACOS = '<rect data-r="braco" x="24" y="49" width="11" height="40" rx="5.5" transform="rotate(8 29.5 69)"/>' +
-      '<rect data-r="braco" x="85" y="49" width="11" height="40" rx="5.5" transform="rotate(-8 90.5 69)"/>' +
-      '<rect data-r="antebraco" x="19" y="92" width="10" height="38" rx="5" transform="rotate(6 24 111)"/>' +
-      '<rect data-r="antebraco" x="91" y="92" width="10" height="38" rx="5" transform="rotate(-6 96 111)"/>' +
-      '<ellipse data-r="mao" cx="22" cy="139" rx="5.5" ry="8"/><ellipse data-r="mao" cx="98" cy="139" rx="5.5" ry="8"/>' +
-      '<circle class="alvo" data-alvo="mao" cx="22" cy="139" r="11"/><circle class="alvo" data-alvo="mao" cx="98" cy="139" r="11"/>';
-    var PERNAS = '<rect class="fixo" x="42" y="117" width="36" height="13" rx="6.5"/>' +
-      '<rect data-r="coxa" x="43" y="132" width="16" height="49" rx="8"/><rect data-r="coxa" x="61" y="132" width="16" height="49" rx="8"/>' +
-      '<rect data-r="perna" x="45" y="184" width="12" height="46" rx="6"/><rect data-r="perna" x="63" y="184" width="12" height="46" rx="6"/>' +
-      '<ellipse class="fixo" cx="50" cy="236" rx="7" ry="4"/><ellipse class="fixo" cx="70" cy="236" rx="7" ry="4"/>';
+    function bracos(cima, baixo){
+      return '<rect data-r="' + cima + '" x="24" y="49" width="11" height="40" rx="5.5" transform="rotate(8 29.5 69)"/>' +
+        '<rect data-r="' + cima + '" x="85" y="49" width="11" height="40" rx="5.5" transform="rotate(-8 90.5 69)"/>' +
+        '<rect data-r="' + baixo + '" x="19" y="92" width="10" height="38" rx="5" transform="rotate(6 24 111)"/>' +
+        '<rect data-r="' + baixo + '" x="91" y="92" width="10" height="38" rx="5" transform="rotate(-6 96 111)"/>' +
+        '<ellipse data-r="mao" cx="22" cy="139" rx="5.5" ry="8"/><ellipse data-r="mao" cx="98" cy="139" rx="5.5" ry="8"/>' +
+        '<circle class="alvo" data-alvo="mao" cx="22" cy="139" r="11"/><circle class="alvo" data-alvo="mao" cx="98" cy="139" r="11"/>';
+    }
+    function pernas(baixo){
+      return '<rect class="fixo" x="42" y="117" width="36" height="13" rx="6.5"/>' +
+        '<rect data-r="coxa" x="43" y="132" width="16" height="49" rx="8"/><rect data-r="coxa" x="61" y="132" width="16" height="49" rx="8"/>' +
+        '<rect data-r="' + baixo + '" x="45" y="184" width="12" height="46" rx="6"/><rect data-r="' + baixo + '" x="63" y="184" width="12" height="46" rx="6"/>' +
+        '<ellipse class="fixo" cx="50" cy="236" rx="7" ry="4"/><ellipse class="fixo" cx="70" cy="236" rx="7" ry="4"/>';
+    }
     var CABECA = '<ellipse class="fixo" cx="60" cy="19" rx="12" ry="15"/>' +
       '<rect data-r="pescoco" x="54" y="36" width="12" height="9" rx="4"/><rect class="alvo" data-alvo="pescoco" x="48" y="33" width="24" height="15"/>';
     var LADOS = {
       frente: CABECA + '<rect data-r="peito" x="37" y="47" width="46" height="32" rx="11"/>' +
-        '<rect data-r="costela" x="40" y="81" width="40" height="34" rx="10"/>' + BRACOS + PERNAS,
-      costas: CABECA + '<rect data-r="costas" x="37" y="47" width="46" height="68" rx="12"/>' + BRACOS + PERNAS
+        '<rect data-r="costela" x="40" y="81" width="40" height="34" rx="10"/>' + bracos("biceps", "antebraco-dentro") + pernas("lateral"),
+      costas: CABECA + '<rect data-r="costas" x="37" y="47" width="46" height="68" rx="12"/>' + bracos("triceps", "antebraco-fora") + pernas("panturrilha")
     };
-    var porSlug = {};
-    (S.galeria || []).forEach(function(p, i){ porSlug[p.foto] = i; });
+    var porSlug = {}, todas = (S.galeria || []).concat(S.mapa || []);
+    todas.forEach(function(p, i){ porSlug[p.foto] = i; });
     function pinta(){
       corpo.querySelectorAll("[data-r]").forEach(function(el){ el.classList.toggle("pintada", el.getAttribute("data-r") === regiao); });
     }
@@ -575,12 +580,12 @@ html.travado{overflow:hidden}
       if (pecas.length){
         var m = document.createElement("div"); m.className = "miniaturas";
         pecas.forEach(function(s){
-          var p = S.galeria[porSlug[s]], bt = document.createElement("button");
+          var p = todas[porSlug[s]], bt = document.createElement("button");
           bt.type = "button"; bt.setAttribute("aria-label", "Ver " + p.nome);
           var im = document.createElement("img"); im.loading = "lazy"; im.alt = p.nome;
           im.src = "fotos/p/" + p.foto + ".jpg" + (p.v ? "?v=" + p.v : "");
           bt.appendChild(im);
-          bt.addEventListener("click", function(){ abrir(porSlug[s]); });
+          bt.addEventListener("click", function(){ abrir(pecas.indexOf(s), pecas.map(function(x){ return todas[porSlug[x]]; })); });
           m.appendChild(bt);
         });
         info.appendChild(m);
@@ -588,8 +593,6 @@ html.travado{overflow:hidden}
         var v = document.createElement("p"); v.textContent = "Ainda não tem peça minha aqui no site. Me manda a ideia que eu te mostro o encaixe.";
         info.appendChild(v);
       }
-      var ok = document.createElement("span"); ok.className = "onde-escolha"; ok.textContent = "✓ Vai junto na mensagem";
-      info.appendChild(ok);
     }
     corpo.addEventListener("click", function(e){
       var el = e.target.closest("[data-r],[data-alvo]");
@@ -628,10 +631,10 @@ html.travado{overflow:hidden}
   // a galeria em tela cheia, do jeito do Reels: desliza pra cima, vem a próxima
   try { history.scrollRestoration = "manual"; } catch(e){}
   var feed = document.getElementById("feed"), rolo = feed.querySelector("[data-rolo]"),
-      dica = feed.querySelector("[data-dica]"), montado = false, inicio = 0, depois = null;
-  function montar(){
-    if (montado) return; montado = true;
-    lista.forEach(function(p){
+      dica = feed.querySelector("[data-dica]"), atuais = null, inicio = 0, depois = null;
+  function montar(itens){
+    if (atuais === itens) return; atuais = itens; rolo.innerHTML = "";
+    itens.forEach(function(p){
       var v = p.v ? "?v=" + p.v : "";
       var q = document.createElement("section"); q.className = "quadro";
       var fundo = document.createElement("img"); fundo.className = "fundo"; fundo.alt = "";
@@ -663,8 +666,8 @@ html.travado{overflow:hidden}
     });
     ult.querySelector("[data-denovo]").addEventListener("click", function(){ rolo.scrollTo({top:0, behavior:"smooth"}); });
   }
-  function abrir(i){
-    montar();
+  function abrir(i, itens){
+    montar(itens || lista);
     feed.hidden = false; document.documentElement.classList.add("travado");
     rolo.scrollTop = i * rolo.clientHeight; inicio = rolo.scrollTop;
     var viu = false;
