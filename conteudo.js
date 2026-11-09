@@ -37,6 +37,20 @@ window.SITE = {
       botao: "Quero fazer a minha primeira", mensagem: "Oi, Felipe! Vim pelo seu site. É minha primeira tattoo e queria conversar." }
   ],
 
+  // O "E ONDE?": o bonequinho que aparece depois da escolha. A pessoa toca numa parte do corpo,
+  // ela pinta, aparece a dica de encaixe e as suas peças daquela parte (o nome da foto na galeria).
+  regioes: {
+    pescoco:   { nome: "Pescoço",   dica: "No pescoço, a peça segue a curva que desce até o ombro.", pecas: [] },
+    peito:     { nome: "Peito",     dica: "No peito, a peça abre junto com os ombros e respeita o centro do corpo.", pecas: ["o-escudo"] },
+    costela:   { nome: "Costela",   dica: "Na costela, a peça acompanha as linhas do tronco, de cima pra baixo.", pecas: [] },
+    costas:    { nome: "Costas",    dica: "Nas costas, a coluna é o eixo: a peça nasce nela e se abre pros lados.", pecas: ["o-eixo", "o-irrevogavel", "a-flor-do-silencio"] },
+    braco:     { nome: "Braço",     dica: "No braço, a peça abraça o músculo e fica bonita de qualquer ângulo.", pecas: ["a-fera", "o-zeus"] },
+    antebraco: { nome: "Antebraço", dica: "No antebraço, a peça segue o comprimento e acompanha o giro do braço.", pecas: ["a-onda", "o-cacique", "o-malandro", "o-ornamental", "o-senna"] },
+    mao:       { nome: "Mão",       dica: "Na mão, a peça tem que ser lida de longe: traço forte, desenho limpo.", pecas: ["jesus-cristo"] },
+    coxa:      { nome: "Coxa",      dica: "Na coxa cabe peça grande, de frente ou de lado, sem brigar com o joelho.", pecas: [] },
+    perna:     { nome: "Perna",     dica: "Na perna, a peça acompanha o volume da panturrilha, do joelho ao tornozelo.", pecas: ["o-zeca", "o-joaquim", "o-flamingo", "a-preta"] }
+  },
+
   // O Uber pro studio (mesmo destino do cravejado.art.br)
   uber: "https://m.uber.com/ul/?action=setPickup&dropoff[latitude]=-16.6981144&dropoff[longitude]=-49.2238241&dropoff[nickname]=CRVJD%20Studio",
 

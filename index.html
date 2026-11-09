@@ -7,6 +7,8 @@
 <meta name="description" content="Tatuagem não é adesivo, ela tem que encaixar no seu corpo. Realismo, fineline e calligraffiti com Felipe Ormond, o Cravejado, em Goiânia. Orçamento pelo WhatsApp.">
 <meta name="theme-color" content="#0b0b0b">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<!-- o contador de visitas (Umami, sem cookie) -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="d6256d79-116a-444d-957a-c988e45a779d"></script>
 
 <!-- Como o link aparece quando alguém manda no WhatsApp ou no Instagram.
      ENDEREÇO: quando o domínio próprio entrar, troca https://ocravejado.github.io/ por ele (nas linhas og:image e og:url logo abaixo). -->
@@ -188,6 +190,25 @@ section{padding:48px 0}
 .resposta h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(26px,3.6vw,36px);line-height:1.18}
 .resposta p{margin-top:10px;font-size:16px;color:var(--cinza);max-width:52ch}
 .resposta .btn{margin-top:18px}
+.onde{margin-top:20px;padding-top:18px;border-top:1px solid var(--linha)}
+.onde .olho{margin-bottom:12px}
+.onde-grade{display:grid;grid-template-columns:minmax(120px,150px) 1fr;gap:16px;align-items:start}
+.lado{display:flex;gap:4px;margin-bottom:8px;padding:3px;border:1px solid var(--linha);border-radius:999px}
+.lado button{flex:1;font:600 11px/1 var(--texto);letter-spacing:.1em;text-transform:uppercase;padding:8px 0;border-radius:999px;color:var(--cinza);background:transparent;border:0;cursor:pointer}
+.lado button.ativo{background:var(--off);color:var(--preto)}
+.boneco svg{display:block;width:100%;height:auto}
+.boneco .fixo{fill:rgba(236,232,225,.04);stroke:rgba(236,232,225,.28);stroke-width:1}
+.boneco [data-r]{fill:rgba(236,232,225,.07);stroke:rgba(236,232,225,.6);stroke-width:1.1;cursor:pointer;transition:fill .25s,stroke .25s}
+.boneco [data-r]:hover{fill:rgba(236,232,225,.16)}
+.boneco [data-r].pintada{fill:var(--ciano);stroke:var(--ciano)}
+.boneco .alvo{fill:transparent;stroke:none;cursor:pointer}
+.onde-info .vazio{font-size:14px;color:var(--cinza)}
+.onde-info b{display:block;font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:24px;line-height:1.18;color:var(--off)}
+.fim .onde-info p,.onde-info p{margin-top:6px;font-size:14px;line-height:1.5;color:var(--cinza)}
+.miniaturas{display:grid;grid-template-columns:repeat(auto-fill,minmax(56px,1fr));gap:6px;margin-top:12px}
+.miniaturas button{padding:0;border:0;background:var(--preto);aspect-ratio:4/5;overflow:hidden;border-radius:6px;cursor:pointer}
+.miniaturas img{width:100%;height:100%;object-fit:cover;display:block}
+.onde-escolha{display:block;margin-top:14px;font-size:13px;color:var(--ciano)}
 .resposta small{display:block;margin-top:12px;font-size:13px;color:var(--cinza)}
 .fim .acoes{margin-top:34px}
 
@@ -310,9 +331,19 @@ html.travado{overflow:hidden}
           <div class="opcoes" data-opcoes></div>
         </fieldset>
         <div class="resposta" data-resposta hidden aria-live="polite">
-          <h3></h3>
-          <p></p>
-          <a class="btn btn-cheio" href="https://wa.me/5562982864646" target="_blank" rel="noopener"><svg><use href="#i-zap"/></svg><span>Pedir orçamento</span></a>
+          <h3 data-r-titulo></h3>
+          <p data-r-texto></p>
+          <div class="onde" data-onde hidden>
+            <p class="olho">E onde? · toca no corpo</p>
+            <div class="onde-grade">
+              <div class="boneco">
+                <div class="lado" role="group" aria-label="Lado do corpo"><button type="button" data-lado="frente" class="ativo">Frente</button><button type="button" data-lado="costas">Costas</button></div>
+                <svg viewBox="0 0 120 250" aria-label="Corpo: toque numa parte" data-corpo></svg>
+              </div>
+              <div class="onde-info" data-onde-info><p class="vazio">Toca na parte do corpo que você pensou.</p></div>
+            </div>
+          </div>
+          <a class="btn btn-cheio" data-r-botao href="https://wa.me/5562982864646" target="_blank" rel="noopener"><svg><use href="#i-zap"/></svg><span>Pedir orçamento</span></a>
           <small>Valor e data na mesma conversa.</small>
         </div>
         <noscript><a class="btn btn-cheio" href="https://wa.me/5562982864646" target="_blank" rel="noopener">Pedir orçamento no WhatsApp</a></noscript>
@@ -460,8 +491,24 @@ html.travado{overflow:hidden}
   }
   if (S.uber) document.querySelectorAll("[data-uber]").forEach(function(a){ a.href = S.uber; });
 
-  // a pergunta do fim
+  // o contador: marca os toques que importam (sem cookie)
+  function marca(nome, dados){ try { if (window.umami) window.umami.track(nome, dados); } catch(e){} }
+  document.addEventListener("click", function(e){
+    var a = e.target.closest && e.target.closest("a");
+    if (!a) return;
+    if (a.href.indexOf("wa.me") > -1) marca("whatsapp", {origem: a.getAttribute("data-origem") || a.textContent.trim().slice(0, 40)});
+    else if (a.href.indexOf("uber.com") > -1) marca("uber");
+  }, true);
+
+  // a pergunta: o que vamos tatuar? (e onde?)
   var caixa = document.querySelector("[data-opcoes]"), resp = document.querySelector("[data-resposta]");
+  var botao = resp ? resp.querySelector("[data-r-botao]") : null, opcao = null, regiao = null;
+  function atualizaBotao(){
+    if (!opcao) return;
+    var R = S.regioes && regiao ? S.regioes[regiao] : null;
+    botao.href = wa(opcao.mensagem + (R ? " Pensei em: " + R.nome.toLowerCase() + "." : ""));
+    botao.setAttribute("data-origem", "pergunta: " + opcao.tipo + (R ? " · " + R.nome : ""));
+  }
   if (caixa && S.opcoes && S.opcoes.length){
     S.opcoes.forEach(function(o, i){
       var l = document.createElement("label"); l.className = "opcao";
@@ -472,16 +519,88 @@ html.travado{overflow:hidden}
       l.appendChild(r); l.appendChild(tp); l.appendChild(b); l.appendChild(d);
       r.addEventListener("change", function(){
         caixa.querySelectorAll(".opcao").forEach(function(x){ x.classList.toggle("marcada", x === l); });
-        resp.querySelector("h3").textContent = o.resposta;
-        resp.querySelector("p").textContent = o.texto;
-        resp.querySelector("a span").textContent = o.botao;
-        resp.querySelector("a").href = wa(o.mensagem);
+        opcao = o;
+        resp.querySelector("[data-r-titulo]").textContent = o.resposta;
+        resp.querySelector("[data-r-texto]").textContent = o.texto;
+        botao.querySelector("span").textContent = o.botao;
+        atualizaBotao();
+        marca("escolheu", {opcao: o.tipo});
         var primeira = resp.hidden; resp.hidden = false;
         if (primeira) resp.scrollIntoView({behavior:"smooth", block:"nearest"});
       });
       caixa.appendChild(l);
     });
-  } else if (resp){ resp.hidden = false; resp.querySelector("h3").remove(); resp.querySelector("p").remove(); resp.querySelector("a").href = wa(); }
+  } else if (resp){ resp.hidden = false; resp.querySelector("[data-r-titulo]").remove(); resp.querySelector("[data-r-texto]").remove(); botao.href = wa(); }
+
+  // o bonequinho: um mapa liso; a parte tocada pinta, e as fotos de verdade aparecem do lado
+  var onde = document.querySelector("[data-onde]");
+  if (onde && S.regioes){
+    var corpo = onde.querySelector("[data-corpo]"), info = onde.querySelector("[data-onde-info]");
+    var BRACOS = '<rect data-r="braco" x="24" y="49" width="11" height="40" rx="5.5" transform="rotate(8 29.5 69)"/>' +
+      '<rect data-r="braco" x="85" y="49" width="11" height="40" rx="5.5" transform="rotate(-8 90.5 69)"/>' +
+      '<rect data-r="antebraco" x="19" y="92" width="10" height="38" rx="5" transform="rotate(6 24 111)"/>' +
+      '<rect data-r="antebraco" x="91" y="92" width="10" height="38" rx="5" transform="rotate(-6 96 111)"/>' +
+      '<ellipse data-r="mao" cx="22" cy="139" rx="5.5" ry="8"/><ellipse data-r="mao" cx="98" cy="139" rx="5.5" ry="8"/>' +
+      '<circle class="alvo" data-alvo="mao" cx="22" cy="139" r="11"/><circle class="alvo" data-alvo="mao" cx="98" cy="139" r="11"/>';
+    var PERNAS = '<rect class="fixo" x="42" y="117" width="36" height="13" rx="6.5"/>' +
+      '<rect data-r="coxa" x="43" y="132" width="16" height="49" rx="8"/><rect data-r="coxa" x="61" y="132" width="16" height="49" rx="8"/>' +
+      '<rect data-r="perna" x="45" y="184" width="12" height="46" rx="6"/><rect data-r="perna" x="63" y="184" width="12" height="46" rx="6"/>' +
+      '<ellipse class="fixo" cx="50" cy="236" rx="7" ry="4"/><ellipse class="fixo" cx="70" cy="236" rx="7" ry="4"/>';
+    var CABECA = '<ellipse class="fixo" cx="60" cy="19" rx="12" ry="15"/>' +
+      '<rect data-r="pescoco" x="54" y="36" width="12" height="9" rx="4"/><rect class="alvo" data-alvo="pescoco" x="48" y="33" width="24" height="15"/>';
+    var LADOS = {
+      frente: CABECA + '<rect data-r="peito" x="37" y="47" width="46" height="32" rx="11"/>' +
+        '<rect data-r="costela" x="40" y="81" width="40" height="34" rx="10"/>' + BRACOS + PERNAS,
+      costas: CABECA + '<rect data-r="costas" x="37" y="47" width="46" height="68" rx="12"/>' + BRACOS + PERNAS
+    };
+    var porSlug = {};
+    (S.galeria || []).forEach(function(p, i){ porSlug[p.foto] = i; });
+    function pinta(){
+      corpo.querySelectorAll("[data-r]").forEach(function(el){ el.classList.toggle("pintada", el.getAttribute("data-r") === regiao); });
+    }
+    function desenha(lado){
+      corpo.innerHTML = LADOS[lado];
+      onde.querySelectorAll("[data-lado]").forEach(function(b){ b.classList.toggle("ativo", b.getAttribute("data-lado") === lado); });
+      pinta();
+    }
+    function escolhe(r){
+      var R = S.regioes[r]; if (!R) return;
+      regiao = r; pinta(); atualizaBotao();
+      marca("tocou no corpo", {regiao: R.nome});
+      info.innerHTML = "";
+      var b = document.createElement("b"); b.textContent = R.nome;
+      var d = document.createElement("p"); d.textContent = R.dica;
+      info.appendChild(b); info.appendChild(d);
+      var pecas = (R.pecas || []).filter(function(s){ return s in porSlug; });
+      if (pecas.length){
+        var m = document.createElement("div"); m.className = "miniaturas";
+        pecas.forEach(function(s){
+          var p = S.galeria[porSlug[s]], bt = document.createElement("button");
+          bt.type = "button"; bt.setAttribute("aria-label", "Ver " + p.nome);
+          var im = document.createElement("img"); im.loading = "lazy"; im.alt = p.nome;
+          im.src = "fotos/p/" + p.foto + ".jpg" + (p.v ? "?v=" + p.v : "");
+          bt.appendChild(im);
+          bt.addEventListener("click", function(){ abrir(porSlug[s]); });
+          m.appendChild(bt);
+        });
+        info.appendChild(m);
+      } else {
+        var v = document.createElement("p"); v.textContent = "Ainda não tem peça minha aqui no site. Me manda a ideia que eu te mostro o encaixe.";
+        info.appendChild(v);
+      }
+      var ok = document.createElement("span"); ok.className = "onde-escolha"; ok.textContent = "✓ Vai junto na mensagem";
+      info.appendChild(ok);
+    }
+    corpo.addEventListener("click", function(e){
+      var el = e.target.closest("[data-r],[data-alvo]");
+      if (el) escolhe(el.getAttribute("data-r") || el.getAttribute("data-alvo"));
+    });
+    onde.querySelectorAll("[data-lado]").forEach(function(b){
+      b.addEventListener("click", function(){ desenha(b.getAttribute("data-lado")); });
+    });
+    desenha("frente");
+    onde.hidden = false;
+  }
 
   // galeria
   var lista = S.galeria || [];
