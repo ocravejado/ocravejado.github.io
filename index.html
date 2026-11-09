@@ -192,7 +192,12 @@ section{padding:48px 0}
 .resposta .btn{margin-top:18px}
 .onde{margin-top:20px;padding-top:18px;border-top:1px solid var(--linha)}
 .onde .olho{margin-bottom:12px}
-.onde-grade{display:grid;grid-template-columns:minmax(120px,150px) 1fr;gap:16px;align-items:start}
+.onde-grade{display:grid;grid-template-columns:1fr;gap:14px;align-items:start}
+.boneco{width:100%;max-width:180px;margin:0 auto}
+.onde-parte{margin-top:12px}
+.onde-parte .rot{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ciano)}
+.onde-parte .rot + p{margin-top:4px}
+@media (min-width:600px){.onde-grade{grid-template-columns:170px 1fr;gap:20px}.boneco{margin:0}}
 .lado{display:flex;gap:4px;margin-bottom:8px;padding:3px;border:1px solid var(--linha);border-radius:999px}
 .lado button{flex:1;font:600 11px/1 var(--texto);letter-spacing:.1em;text-transform:uppercase;padding:8px 0;border-radius:999px;color:var(--cinza);background:transparent;border:0;cursor:pointer}
 .lado button.ativo{background:var(--off);color:var(--preto)}
@@ -537,7 +542,8 @@ html.travado{overflow:hidden}
   var onde = document.querySelector("[data-onde]");
   if (onde && S.regioes){
     var corpo = onde.querySelector("[data-corpo]"), info = onde.querySelector("[data-onde-info]");
-    function bracos(cima, baixo){
+    function bracos(){
+      var cima = "braco", baixo = "antebraco";  // os mesmos dos dois lados: a resposta mostra por fora e por dentro
       return '<rect data-r="' + cima + '" x="24" y="49" width="11" height="40" rx="5.5" transform="rotate(8 29.5 69)"/>' +
         '<rect data-r="' + cima + '" x="85" y="49" width="11" height="40" rx="5.5" transform="rotate(-8 90.5 69)"/>' +
         '<rect data-r="' + baixo + '" x="19" y="92" width="10" height="38" rx="5" transform="rotate(6 24 111)"/>' +
@@ -555,8 +561,8 @@ html.travado{overflow:hidden}
       '<rect data-r="pescoco" x="54" y="36" width="12" height="9" rx="4"/><rect class="alvo" data-alvo="pescoco" x="48" y="33" width="24" height="15"/>';
     var LADOS = {
       frente: CABECA + '<rect data-r="peito" x="37" y="47" width="46" height="32" rx="11"/>' +
-        '<rect data-r="costela" x="40" y="81" width="40" height="34" rx="10"/>' + bracos("biceps", "antebraco-dentro") + pernas("lateral"),
-      costas: CABECA + '<rect data-r="costas" x="37" y="47" width="46" height="68" rx="12"/>' + bracos("triceps", "antebraco-fora") + pernas("panturrilha")
+        '<rect data-r="costela" x="40" y="81" width="40" height="34" rx="10"/>' + bracos() + pernas("lateral"),
+      costas: CABECA + '<rect data-r="costas" x="37" y="47" width="46" height="68" rx="12"/>' + bracos() + pernas("panturrilha")
     };
     var porSlug = {}, todas = (S.galeria || []).concat(S.mapa || []);
     todas.forEach(function(p, i){ porSlug[p.foto] = i; });
@@ -574,25 +580,34 @@ html.travado{overflow:hidden}
       marca("tocou no corpo", {regiao: R.nome});
       info.innerHTML = "";
       var b = document.createElement("b"); b.textContent = R.nome;
-      var d = document.createElement("p"); d.textContent = R.dica;
-      info.appendChild(b); info.appendChild(d);
-      var pecas = (R.pecas || []).filter(function(s){ return s in porSlug; });
-      if (pecas.length){
-        var m = document.createElement("div"); m.className = "miniaturas";
-        pecas.forEach(function(s){
-          var p = todas[porSlug[s]], bt = document.createElement("button");
-          bt.type = "button"; bt.setAttribute("aria-label", "Ver " + p.nome);
-          var im = document.createElement("img"); im.loading = "lazy"; im.alt = p.nome;
-          im.src = "fotos/p/" + p.foto + ".jpg" + (p.v ? "?v=" + p.v : "");
-          bt.appendChild(im);
-          bt.addEventListener("click", function(){ abrir(pecas.indexOf(s), pecas.map(function(x){ return todas[porSlug[x]]; })); });
-          m.appendChild(bt);
-        });
-        info.appendChild(m);
-      } else {
+      info.appendChild(b);
+      // braço e antebraço: por fora e por dentro, juntos
+      (R.lados || [R]).forEach(function(L){
+        var bloco = document.createElement("div"); bloco.className = "onde-parte";
+        if (R.lados){ var rot = document.createElement("span"); rot.className = "rot"; rot.textContent = L.nome; bloco.appendChild(rot); }
+        var d = document.createElement("p"); d.textContent = L.dica; bloco.appendChild(d);
+        miniaturas(L.pecas, bloco);
+        info.appendChild(bloco);
+      });
+      if (window.innerWidth < 600) info.scrollIntoView({behavior:"smooth", block:"nearest"});
+    }
+    function miniaturas(lst, alvo){
+      var pecas = (lst || []).filter(function(s){ return s in porSlug; });
+      if (!pecas.length){
         var v = document.createElement("p"); v.textContent = "Ainda não tem peça minha aqui no site. Me manda a ideia que eu te mostro o encaixe.";
-        info.appendChild(v);
+        alvo.appendChild(v); return;
       }
+      var m = document.createElement("div"); m.className = "miniaturas";
+      pecas.forEach(function(s){
+        var p = todas[porSlug[s]], bt = document.createElement("button");
+        bt.type = "button"; bt.setAttribute("aria-label", "Ver " + p.nome);
+        var im = document.createElement("img"); im.loading = "lazy"; im.alt = p.nome;
+        im.src = "fotos/p/" + p.foto + ".jpg" + (p.v ? "?v=" + p.v : "");
+        bt.appendChild(im);
+        bt.addEventListener("click", function(){ abrir(pecas.indexOf(s), pecas.map(function(x){ return todas[porSlug[x]]; })); });
+        m.appendChild(bt);
+      });
+      alvo.appendChild(m);
     }
     corpo.addEventListener("click", function(e){
       var el = e.target.closest("[data-r],[data-alvo]");
