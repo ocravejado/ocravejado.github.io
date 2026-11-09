@@ -7,6 +7,8 @@
 <meta name="description" content="Tatuagem não é adesivo, ela tem que encaixar no seu corpo. Realismo, fineline e calligraffiti com Felipe Ormond, o Cravejado, em Goiânia. Orçamento pelo WhatsApp.">
 <meta name="theme-color" content="#0b0b0b">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<!-- navegador de dentro do Instagram/Facebook: a barra deles cobre o pé da tela -->
+<script>if(/Instagram|FBAN|FBAV|FB_IAB/i.test(navigator.userAgent))document.documentElement.classList.add("in-app")</script>
 <!-- o contador de visitas (Umami, sem cookie) -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="d6256d79-116a-444d-957a-c988e45a779d" data-domains="ocravejado.github.io,ocravejado.com.br,www.ocravejado.com.br"></script>
 
@@ -226,10 +228,13 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 22px}
 footer a:hover{color:var(--off)}
 
 /* ---------- barra fixa no celular ---------- */
-.barra{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;transform:translateY(140%);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.barra{position:fixed;left:12px;right:12px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:60;transform:translateY(140%);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
 .barra.ver{transform:none}
 .barra.ver.some{transform:translateY(140%)}
 .barra .btn{width:100%;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.in-app .barra{bottom:calc(56px + env(safe-area-inset-bottom))}
+.in-app .quadro .info{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+.in-app .feed-dica{bottom:190px}
 
 /* ---------- a galeria em tela cheia (modo Reels) ---------- */
 html.travado{overflow:hidden}
