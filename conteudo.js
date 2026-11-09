@@ -56,7 +56,7 @@ window.SITE = {
     "mao":              { nome: "Mão", em: "na mão", dica: "Os ossos e os dedos mandam. Traço forte, pra ser lido de longe.", pecas: ["jesus-cristo"] },
     "coxa":             { nome: "Coxa", em: "na coxa", dica: "O músculo da frente da coxa é grande e firme: segura peça grande, de cima a baixo.", pecas: ["mapa-coxa"] },
     "lateral":          { nome: "Lateral da perna", em: "na lateral da perna", dica: "A peça segue a linha que desce do joelho ao tornozelo, de lado.", pecas: ["the-last-day-of-pompeii", "a-preta"] },
-    "panturrilha":      { nome: "Panturrilha", em: "na panturrilha", dica: "A panturrilha é redonda. A peça acompanha o volume do músculo pra não ficar chapada.", pecas: ["mapa-o-zeca", "o-joaquim", "o-flamingo", "o-reflexo", "o-beija-flor", "mapa-a-faith"] }
+    "panturrilha":      { nome: "Panturrilha", em: "na panturrilha", dica: "A panturrilha é redonda. A peça acompanha o volume do músculo pra não ficar chapada.", pecas: ["mapa-o-zeca", "o-joaquim", "o-equilibrio", "o-reflexo", "o-beija-flor", "mapa-a-faith"] }
   },
 
   // O Uber pro studio (mesmo destino do cravejado.art.br)
@@ -97,7 +97,7 @@ window.SITE = {
     { foto: "o-joaquim",               v: "ec60b0", nome: "O Joaquim", estilo: "Realismo · pet" },
     { foto: "a-preta",                 v: "b4ed9e", nome: "A Preta", estilo: "Cravejado" },
     { foto: "o-beija-flor",            v: "cac3a7", nome: "O Beija-flor", estilo: "Realismo" },
-    { foto: "o-flamingo",              v: "cbbf8a", nome: "O Flamingo", estilo: "Cravejado" },
+    { foto: "o-equilibrio",            v: "cbbf8a", nome: "O Equilíbrio", estilo: "Cravejado" },
     { foto: "inercia",                 v: "605588", nome: "Inércia", estilo: "Cravejado" },
     { foto: "a-flor-do-silencio",      v: "0886ae", nome: "A Flor do Silêncio", estilo: "Fineline" },
     { foto: "o-irrevogavel",           v: "fa2b90", nome: "O Irrevogável", estilo: "Cravejado" }

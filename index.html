@@ -69,8 +69,9 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;op
 .titulo{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:1.18;letter-spacing:.005em}
 
 /* ---------- topo ---------- */
-.topo{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
-.topo.solido{background:rgba(11,11,11,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-color:var(--linha)}
+.topo{position:fixed;top:0;left:0;right:0;z-index:50;transition:transform .3s cubic-bezier(.2,.7,.2,1),background .3s,border-color .3s;border-bottom:1px solid transparent}
+.topo.solido{background:var(--preto);border-color:var(--linha)}
+.topo.some{transform:translateY(-100%)}
 .topo .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
 .marca{font-family:var(--display);font-size:22px;letter-spacing:.14em;display:flex;align-items:center;gap:10px}
 .marca svg{width:16px;height:16px}
@@ -250,7 +251,7 @@ html.travado{overflow:hidden}
 .quadro-fim .acoes{margin-top:26px}
 .quadro-fim button.btn{font:600 15px/1 var(--texto);background:transparent;cursor:pointer}
 .feed-fechar{position:absolute;top:calc(12px + env(safe-area-inset-top));right:12px;z-index:3;width:44px;height:44px;border-radius:50%;border:1px solid var(--linha);background:rgba(11,11,11,.55);color:var(--off);font-size:20px;line-height:1;cursor:pointer}
-.feed-dica{position:absolute;left:0;right:0;bottom:150px;z-index:3;text-align:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--off);pointer-events:none;animation:sobe 1.6s ease-in-out infinite}
+.feed-dica{position:absolute;left:50%;bottom:140px;z-index:3;margin-left:-90px;width:180px;text-align:center;font:600 12px/1 var(--texto);letter-spacing:.14em;text-transform:uppercase;color:var(--off);padding:12px 0;border-radius:999px;background:rgba(11,11,11,.62);border:1px solid rgba(236,232,225,.22);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);pointer-events:none;animation:sobe 1.6s ease-in-out infinite}
 .feed-dica[hidden]{display:none}
 @keyframes sobe{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(-10px);opacity:1}}
 
@@ -393,10 +394,10 @@ html.travado{overflow:hidden}
         <h2 class="titulo">Como agendar</h2>
       </div>
       <ol class="passos">
-        <li class="surge"><h3>A ideia</h3><p>Não precisa chegar com ela pronta. Quase ninguém chega. Tem gente que me manda só uma foto. Me conta o que você imagina e onde.</p></li>
-        <li class="surge"><h3>O encaixe</h3><p>Antes do desenho, definimos o lugar. Escuto suas ideias e te mostro onde a sua tatuagem encaixa melhor no seu corpo. É tipo marcar com lápis na parede onde o quadro vai ficar, antes mesmo de pintar o quadro.</p><p class="ciano">Isso é Cravejado.</p></li>
+        <li class="surge"><h3>A ideia</h3><p>Não precisa chegar com ela pronta. Quase ninguém chega. Me conta o que você imagina e onde.</p></li>
+        <li class="surge"><h3>O encaixe</h3><p>Antes do desenho, escuto suas ideias e mostro onde sua tatuagem encaixa melhor no corpo. É tipo marcar com lápis na parede onde o quadro vai ficar, antes mesmo de pintar o quadro.</p><p class="ciano">Isso é Cravejado.</p></li>
         <li class="surge"><h3>O esboço</h3><p>Com o lugar definido, faço um esboço rápido em cima da foto do seu corpo. É só pra você enxergar o que eu tô pensando: tamanho, posição e movimento.</p><p class="ciano">A arte final vem depois do sinal.</p></li>
-        <li class="surge"><h3>Orçamento e sinal</h3><p>Gostou do esboço? Te passo o valor e as datas numa mensagem só. O sinal trava a sua data, sai do valor total e é o que me faz começar a arte final. O restante em até 12x.</p><p class="ciano">Sem o sinal, nada garante que aquele dia é seu.</p></li>
+        <li class="surge"><h3>Orçamento e sinal</h3><p>Gostou do esboço? Te passo o valor e as datas numa mensagem só. O sinal trava a sua data e é o que me faz começar a arte final. O restante em até 12x.</p><p class="ciano">Sem o sinal, nada garante que aquele dia é seu.</p></li>
         <li class="surge"><h3>A espera</h3><p>Com a data travada, antes da sessão eu te mando a arte final e os cuidados pré-tattoo. Bateu dúvida, é só chamar.</p><p class="ciano">No dia, você só precisa chegar.</p></li>
       </ol>
     </div>
@@ -691,9 +692,7 @@ html.travado{overflow:hidden}
     montar(itens || lista);
     feed.hidden = false; document.documentElement.classList.add("travado");
     rolo.scrollTop = i * rolo.clientHeight; inicio = rolo.scrollTop;
-    var viu = false;
-    try { viu = sessionStorage.getItem("dica") === "1"; sessionStorage.setItem("dica", "1"); } catch(e){}
-    dica.hidden = viu;
+    dica.hidden = false;  // toda vez que abre: é ela que liga o "modo Reels" na cabeça da pessoa
     try { history.pushState({feed:1}, ""); } catch(e){}
   }
   function fechar(voltando){
@@ -730,7 +729,13 @@ html.travado{overflow:hidden}
     document.querySelectorAll(".surge").forEach(function(el){ el.classList.add("ok"); });
     barra.classList.add("ver");
   }
-  function rolou(){ topo.classList.toggle("solido", window.scrollY > 40); }
+  // o cabeçalho: transparente na capa; descendo, some; subindo, volta sólido
+  var ultimoY = window.scrollY;
+  function rolou(){
+    var y = window.scrollY;
+    topo.classList.toggle("solido", y > 40);
+    if (Math.abs(y - ultimoY) > 6){ topo.classList.toggle("some", y > ultimoY && y > 120); ultimoY = y; }
+  }
   window.addEventListener("scroll", rolou, {passive:true}); rolou();
 })();
 </script>
