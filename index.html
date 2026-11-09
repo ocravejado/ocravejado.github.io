@@ -507,7 +507,7 @@ html.travado{overflow:hidden}
 
   // a pergunta: o que vamos tatuar? (e onde?)
   var caixa = document.querySelector("[data-opcoes]"), resp = document.querySelector("[data-resposta]");
-  var botao = resp ? resp.querySelector("[data-r-botao]") : null, opcao = null, regiao = null;
+  var botao = resp ? resp.querySelector("[data-r-botao]") : null, opcao = null, regiao = null, limpaOnde = function(){};
   function atualizaBotao(){
     if (!opcao) return;
     var R = S.regioes && regiao ? S.regioes[regiao] : null;
@@ -529,6 +529,9 @@ html.travado{overflow:hidden}
         resp.querySelector("[data-r-titulo]").textContent = o.resposta;
         resp.querySelector("[data-r-texto]").textContent = o.texto;
         botao.querySelector("span").textContent = o.botao;
+        // o boneco só aparece pra quem nunca tatuou: é a referência de quem não manja nada
+        var ondeEl = document.querySelector("[data-onde]");
+        if (ondeEl){ ondeEl.hidden = !o.boneco; if (!o.boneco && regiao) limpaOnde(); }
         atualizaBotao();
         marca("escolheu", {opcao: o.tipo});
         var primeira = resp.hidden; resp.hidden = false;
@@ -617,7 +620,7 @@ html.travado{overflow:hidden}
       b.addEventListener("click", function(){ desenha(b.getAttribute("data-lado")); });
     });
     desenha("frente");
-    onde.hidden = false;
+    limpaOnde = function(){ regiao = null; pinta(); info.innerHTML = '<p class="vazio">Toca na parte do corpo que você pensou.</p>'; };
   }
 
   // galeria

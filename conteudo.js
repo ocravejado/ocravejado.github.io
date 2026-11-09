@@ -32,7 +32,8 @@ window.SITE = {
     { tipo: "Projeto grande", titulo: "Quero fechar um braço, as costas ou a perna", detalhe: "Uma peça só, ocupando a região inteira.",
       resposta: "Projeto grande se planeja inteiro.", texto: "Antes da primeira sessão, a gente define o encaixe da arte inteira e quantas sessões vão ser. Cada parte já nasce no lugar certo.",
       botao: "Quero fechar uma região", mensagem: "Oi, Felipe! Vim pelo seu site e quero fechar uma região inteira (braço, costas ou perna)." },
-    { tipo: "Primeira tattoo", titulo: "É minha primeira tattoo", detalhe: "Não precisa saber o quê nem onde. A gente começa pela conversa.",
+    // boneco: true = só nessa opção aparece o "E onde?" (quem nunca tatuou precisa da referência)
+    { tipo: "Primeira tattoo", boneco: true, titulo: "É minha primeira tattoo", detalhe: "Não precisa saber o quê nem onde. A gente começa pela conversa.",
       resposta: "A primeira a gente faz com calma.", texto: "Me conta o que te dá vontade de tatuar, mesmo que ainda seja só uma ideia solta. Se preferir, vem conhecer o studio antes, sem compromisso.",
       botao: "Quero fazer a minha primeira", mensagem: "Oi, Felipe! Vim pelo seu site. É minha primeira tattoo e queria conversar." }
   ],
