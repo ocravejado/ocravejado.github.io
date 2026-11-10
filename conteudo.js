@@ -19,7 +19,7 @@ window.SITE = {
   // texto = o que aparece · mensagem = o que vai escrito no WhatsApp quando a pessoa toca
   // Pra tirar um aviso, apaga a linha inteira. Sem aviso nenhum, deixa: avisos: []
   avisos: [
-    { texto: "Restam 2 vagas em novembro", mensagem: "Oi, Felipe! Vim pelo seu site e quero uma das vagas de novembro." },
+    { texto: "Resta 1 vaga em novembro", mensagem: "Oi, Felipe! Vim pelo seu site e quero a última vaga de novembro." },
     { texto: "Guest em São Paulo · 19 a 22/11", mensagem: "Oi, Felipe! Vim pelo seu site. Vi que você vai estar em São Paulo de 19 a 22/11 e quero tatuar." }
   ],
 
