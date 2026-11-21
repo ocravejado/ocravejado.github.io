@@ -12,16 +12,27 @@ window.SITE = {
   // A mensagem que já vem escrita quando a pessoa toca no botão
   mensagem: "Oi, Felipe! Vim pelo seu site e quero fazer uma tattoo.",
 
-  // A linha da agenda. Igual na bio: só muda o mês e a cidade
-  agenda: "Agenda de novembro aberta · Goiânia",
-
-  // OS AVISOS: as linhas embaixo da agenda, na capa. Mudam toda semana.
+  // AS CIDADES: a agenda da capa. Uma cidade por bloco, o nome grande (pedido dele, 21/11).
   // texto = o que aparece · mensagem = o que vai escrito no WhatsApp quando a pessoa toca
-  // Pra tirar um aviso, apaga a linha inteira. Sem aviso nenhum, deixa: avisos: []
-  avisos: [
-    { texto: "Resta 1 vaga em novembro", mensagem: "Oi, Felipe! Vim pelo seu site e quero a última vaga de novembro." },
-    { texto: "Guest em São Paulo · 19 a 22/11", mensagem: "Oi, Felipe! Vim pelo seu site. Vi que você vai estar em São Paulo de 19 a 22/11 e quero tatuar." }
+  // Linha sem mensagem = só texto, sem toque (ex.: mês fechado). Vaga mudou → muda aqui no mesmo dia.
+  cidades: [
+    { nome: "Goiânia", linhas: [
+      { texto: "Novembro · fechado" },
+      { texto: "Dezembro · 7 de 10 vagas restantes", mensagem: "Oi, Felipe! Vim pelo seu site e quero uma vaga de dezembro em Goiânia." }
+    ] },
+    { nome: "Floripa", linhas: [
+      { texto: "05 a 14/01 · 3 vagas", mensagem: "Oi, Felipe! Vim pelo seu site e quero uma vaga em Floripa, de 05 a 14/01." }
+    ] },
+    { nome: "São Paulo", linhas: [
+      { texto: "16 a 20/01 · 2 vagas", mensagem: "Oi, Felipe! Vim pelo seu site e quero uma vaga em São Paulo, de 16 a 20/01." }
+    ] }
   ],
+
+  // A linha da agenda: só aparece se as cidades estiverem vazias (cidades: [])
+  agenda: "Agenda de dezembro aberta · Goiânia",
+
+  // OS AVISOS: linhas soltas embaixo da agenda (opcional). Sem aviso nenhum, deixa: avisos: []
+  avisos: [],
 
   // A PERGUNTA ("O que vamos tatuar?"), logo depois da capa. A pessoa toca numa opção, aparece a resposta
   // e o botão manda uma mensagem diferente no WhatsApp: você já sabe o tipo de projeto antes de abrir.

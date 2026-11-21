@@ -107,6 +107,17 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;op
 .avisos a{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 2px;border-bottom:1px solid var(--linha);font-size:14px;color:var(--cinza);transition:color .2s}
 .avisos a::after{content:"→";color:var(--ciano);transition:transform .2s}
 .avisos a:hover{color:var(--off)}.avisos a:hover::after{transform:translateX(3px)}
+/* as cidades da agenda: o nome grande, as datas embaixo (21/11) */
+.agenda[hidden],.cidades[hidden]{display:none}
+.cidades{display:grid;grid-template-columns:minmax(0,1fr);gap:26px;margin-top:34px;max-width:420px}
+.cidade h3{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(32px,6vw,46px);line-height:1;letter-spacing:.02em;color:var(--off);padding-bottom:12px;border-bottom:1px solid var(--linha)}
+.cidade h3 i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--ciano);box-shadow:0 0 0 0 rgba(79,211,234,.6);animation:pulsa 2.4s infinite}
+.cidade ul{list-style:none}
+.cidade li>a,.cidade li>span{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 2px;border-bottom:1px solid var(--linha);font-size:15px}
+.cidade li>a{color:var(--off);transition:color .2s}
+.cidade li>a::after{content:"→";color:var(--ciano);transition:transform .2s}
+.cidade li>a:hover::after{transform:translateX(3px)}
+.cidade li>span{color:var(--cinza)}
 .primeira .discreto{display:inline-block;margin-top:16px;font-size:14px;text-decoration:underline;text-underline-offset:3px;opacity:.75}
 @keyframes pulsa{70%{box-shadow:0 0 0 10px rgba(79,211,234,0)}100%{box-shadow:0 0 0 0 rgba(79,211,234,0)}}
 
@@ -325,7 +336,8 @@ html.travado{overflow:hidden}
         <a class="btn btn-cheio" href="#orcamento">Pedir orçamento</a>
         <a class="btn btn-vazio" href="#trabalho">Ver o trabalho</a>
       </div>
-      <p class="agenda"><i></i><span data-agenda>Agenda de novembro aberta · Goiânia</span></p>
+      <p class="agenda" data-agenda-linha><i></i><span data-agenda>Agenda de dezembro aberta · Goiânia</span></p>
+      <div class="cidades" data-cidades hidden></div>
       <ul class="avisos" data-avisos hidden></ul>
     </div>
   </section>
@@ -480,7 +492,7 @@ html.travado{overflow:hidden}
   <p class="feed-dica" data-dica>↑ Desliza pra cima</p>
 </div>
 
-<script src="conteudo.js?v=8142aa"></script>
+<script src="conteudo.js?v=641a21"></script>
 <script>
 (function(){
   var S = window.SITE || {};
@@ -492,6 +504,27 @@ html.travado{overflow:hidden}
   if (S.instagram) document.querySelectorAll("[data-ig]").forEach(function(a){ a.href = "https://instagram.com/" + S.instagram; if (a.textContent.charAt(0) === "@") a.textContent = "@" + S.instagram; });
   if (S.instagramStudio) document.querySelectorAll("[data-ig-studio]").forEach(function(a){ a.href = "https://instagram.com/" + S.instagramStudio; });
   if (S.agenda) document.querySelectorAll("[data-agenda]").forEach(function(el){ el.textContent = S.agenda; });
+  // as cidades da agenda: o nome grande e as datas; linha com mensagem vira toque pro WhatsApp
+  var cid = document.querySelector("[data-cidades]");
+  if (cid && S.cidades && S.cidades.length){
+    S.cidades.forEach(function(c){
+      var box = document.createElement("div"), h = document.createElement("h3"), ul = document.createElement("ul"), aberta = false;
+      box.className = "cidade";
+      (c.linhas || []).forEach(function(x){
+        var li = document.createElement("li"), el;
+        if (x.mensagem){
+          el = document.createElement("a"); el.href = wa(x.mensagem); el.target = "_blank"; el.rel = "noopener";
+          el.setAttribute("data-origem", "agenda · " + c.nome + " · " + x.texto); aberta = true;
+        } else el = document.createElement("span");
+        el.textContent = x.texto; li.appendChild(el); ul.appendChild(li);
+      });
+      if (aberta) h.appendChild(document.createElement("i"));
+      h.appendChild(document.createTextNode(c.nome));
+      box.appendChild(h); box.appendChild(ul); cid.appendChild(box);
+    });
+    cid.hidden = false;
+    document.querySelectorAll("[data-agenda-linha]").forEach(function(el){ el.hidden = true; });
+  }
   var av = document.querySelector("[data-avisos]");
   if (av && S.avisos && S.avisos.length){
     S.avisos.forEach(function(x){

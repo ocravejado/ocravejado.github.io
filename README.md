@@ -28,7 +28,8 @@ Depois fala pro VIVO: "atualiza o site". Ele roda o `atualizar-galeria.py` (que 
 
 | Quero... | Onde |
 |---|---|
-| mudar o mês ou a cidade da agenda | `conteudo.js` → `agenda` |
+| mudar as cidades, as datas e as vagas da capa | `conteudo.js` → `cidades` |
+| a linha de agenda antiga (só aparece sem cidades) | `conteudo.js` → `agenda` |
 | trocar o número do WhatsApp | `conteudo.js` → `whatsapp` (só números, 55 + DDD) |
 | mudar a mensagem que já vem escrita | `conteudo.js` → `mensagem` |
 | mudar os avisos da capa (vagas, viagem) | `conteudo.js` → `avisos` |
