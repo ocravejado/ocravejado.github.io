@@ -18,7 +18,8 @@ window.SITE = {
   cidades: [
     { nome: "Goiânia", linhas: [
       { texto: "Novembro · fechado" },
-      { texto: "Dezembro · 7 de 10 vagas restantes", mensagem: "Oi, Felipe! Vim pelo seu site e quero uma vaga de dezembro em Goiânia." }
+      { texto: "Dezembro · 7 de 10 vagas restantes", mensagem: "Oi, Felipe! Vim pelo seu site e quero uma vaga de dezembro em Goiânia." },
+      { texto: "Janeiro · fechado" }
     ] },
     { nome: "Floripa", linhas: [
       { texto: "05 a 14/01 · 3 vagas", mensagem: "Oi, Felipe! Vim pelo seu site e quero uma vaga em Floripa, de 05 a 14/01." }
