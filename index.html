@@ -544,6 +544,28 @@ html.travado{overflow:hidden}
     else if (a.href.indexOf("uber.com") > -1) marca("uber");
   }, true);
 
+  // até onde a pessoa rola: cada parte marca uma vez, quando o topo dela sobe acima de 60% da tela.
+  // Conta "passou por": rolou rápido ou pulou por um link, as partes de cima marcam junto.
+  // (o número na frente deixa a lista em ordem no contador)
+  (function(){
+    var partes = [
+      ["#orcamento", "1 pergunta"], ["#trabalho", "2 trabalho"], ["section.dia", "3 uma pessoa por dia"],
+      ["#como", "4 como agendar"], ["section.primeira", "5 primeira tattoo"], ["section.perguntas", "6 perguntas"],
+      ["section.fim", "7 fim"]
+    ], els = [], vistas = {}, pendente = false;
+    partes.forEach(function(p){ var el = document.querySelector(p[0]); if (el) els.push([el, p[1]]); });
+    function confere(){
+      pendente = false;
+      var limite = window.innerHeight * 0.6;
+      els.forEach(function(x){
+        if (vistas[x[1]] || x[0].getBoundingClientRect().top >= limite) return;
+        vistas[x[1]] = true; marca("chegou", {parte: x[1]});
+      });
+    }
+    window.addEventListener("scroll", function(){ if (!pendente){ pendente = true; setTimeout(confere, 150); } }, {passive: true});
+    confere();
+  })();
+
   // a pergunta: o que vamos tatuar? (e onde?)
   var caixa = document.querySelector("[data-opcoes]"), resp = document.querySelector("[data-resposta]");
   var botao = resp ? resp.querySelector("[data-r-botao]") : null, opcao = null, regiao = null, limpaOnde = function(){};
