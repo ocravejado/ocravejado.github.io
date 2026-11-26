@@ -107,6 +107,13 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;op
 .avisos a{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 2px;border-bottom:1px solid var(--linha);font-size:14px;color:var(--cinza);transition:color .2s}
 .avisos a::after{content:"→";color:var(--ciano);transition:transform .2s}
 .avisos a:hover{color:var(--off)}.avisos a:hover::after{transform:translateX(3px)}
+/* a Black (25/11): o aviso em ciano acima dos botões; some sozinho depois do "ate" */
+.black[hidden]{display:none}
+.black{margin-top:24px;max-width:420px;padding:14px 16px;border:1px solid rgba(79,211,234,.45);border-radius:14px;background:rgba(79,211,234,.07)}
+.black .olho{display:flex;align-items:center;gap:10px;color:var(--ciano);opacity:1}
+.black .olho i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--ciano);box-shadow:0 0 0 0 rgba(79,211,234,.6);animation:pulsa 2.4s infinite}
+.black p+p{margin-top:8px;font-size:16px;line-height:1.4;color:var(--off)}
+.black+.acoes{margin-top:18px}
 /* as cidades da agenda: o nome grande, as datas embaixo (21/11) */
 .agenda[hidden],.cidades[hidden]{display:none}
 .cidades{display:grid;grid-template-columns:minmax(0,1fr);gap:26px;margin-top:34px;max-width:420px}
@@ -331,6 +338,7 @@ html.travado{overflow:hidden}
       <p class="olho">Felipe Ormond · Cravejado</p>
       <h1 class="titulo">Tatuagem<br>não é<br>adesivo<span class="ponto">.</span></h1>
       <p class="sub">Ela tem que encaixar no seu corpo.</p>
+      <div class="black" data-black hidden><p class="olho"><i></i><span data-black-olho></span></p><p data-black-texto></p></div>
       <div class="acoes">
         <a class="btn btn-cheio" href="#orcamento">Pedir orçamento</a>
         <a class="btn btn-vazio" href="#trabalho">Ver o trabalho</a>
@@ -491,7 +499,7 @@ html.travado{overflow:hidden}
   <p class="feed-dica" data-dica>↑ Desliza pra cima</p>
 </div>
 
-<script src="conteudo.js?v=669150"></script>
+<script src="conteudo.js?v=2de89d"></script>
 <script>
 (function(){
   var S = window.SITE || {};
@@ -532,6 +540,20 @@ html.travado{overflow:hidden}
       li.appendChild(a); av.appendChild(li);
     });
     av.hidden = false;
+  }
+  // A BLACK (25/11): enquanto vale, o botão principal da capa e a barra do celular vão direto pro WhatsApp
+  var B = S.black, d0 = new Date(), hojeISO = new Date(d0.getTime() - d0.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  var blackAtiva = !!(B && B.ate && hojeISO <= B.ate);
+  function praBlack(a, origem, texto){
+    if (!a) return;
+    a.href = wa(B.mensagem); a.target = "_blank"; a.rel = "noopener"; a.setAttribute("data-origem", origem);
+    a.innerHTML = '<svg><use href="#i-zap"/></svg><span></span>'; a.lastChild.textContent = texto;
+  }
+  if (blackAtiva){
+    var bx = document.querySelector("[data-black]");
+    if (bx){ bx.querySelector("[data-black-olho]").textContent = B.olho; bx.querySelector("[data-black-texto]").textContent = B.texto; bx.hidden = false; }
+    praBlack(document.querySelector(".capa .acoes .btn-cheio"), "black · capa", B.botao);
+    praBlack(document.querySelector("#barra .btn"), "black · barra", B.barra || B.botao);
   }
   if (S.uber) document.querySelectorAll("[data-uber]").forEach(function(a){ a.href = S.uber; });
 
@@ -774,7 +796,7 @@ html.travado{overflow:hidden}
   if ("IntersectionObserver" in window){
     new IntersectionObserver(function(es){
       var fora = !es[0].isIntersecting;
-      barra.classList.toggle("ver", fora);
+      barra.classList.toggle("ver", fora || blackAtiva);
     }, {threshold:0.15}).observe(capa);
     var fim = document.getElementById("orcamento");
     if (fim) new IntersectionObserver(function(es){

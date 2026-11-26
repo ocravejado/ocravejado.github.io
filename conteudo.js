@@ -32,6 +32,18 @@ window.SITE = {
   // A linha da agenda: só aparece se as cidades estiverem vazias (cidades: [])
   agenda: "Agenda de dezembro aberta · Goiânia",
 
+  // A BLACK (25/11): o botão de conversão no topo. Enquanto vale, o botão principal da capa e a barra
+  // fixa do celular vão direto pro WhatsApp com esta mensagem. Some sozinho depois do dia "ate".
+  // Sem promoção: black: null
+  black: {
+    ate: "2026-11-30",
+    olho: "Black Cravejada",
+    texto: "15% em qualquer tattoo de dezembro, com o sinal até seg 30/11. 7 vagas.",
+    botao: "Garantir minha vaga",
+    barra: "Garantir vaga · 15% na Black",
+    mensagem: "Oi, Felipe! Vim pelo seu site e quero garantir minha vaga de dezembro com os 15% da Black."
+  },
+
   // OS AVISOS: linhas soltas embaixo da agenda (opcional). Sem aviso nenhum, deixa: avisos: []
   avisos: [],
 
